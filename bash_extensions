@@ -1,0 +1,220 @@
+# Designed to be used on both dev and production servers
+# Read and understand all of this that you use!
+#
+# As the license says:
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+###############################################################################
+# Basics
+###############################################################################
+
+ulimit -n 1024
+
+alias ll='ls -lFh'
+alias lla='ls -lFah'
+alias llt='ls -lhFart'
+
+alias pd='pushd'
+alias pop='popd'
+
+alias a=alias
+alias h='history | tail -50'
+
+# eg "ag rake" to see all rake-related aliases
+function ga {
+  alias | grep "$1" | grep -v grep
+}
+
+alias ebp='$EDITOR ~/.bash_profile'
+alias ebpe='$EDITOR ~/.dev_env'
+alias sbp='. ~/.bash_profile'
+
+# remove all .svn dirs in the current dir and subdirs
+alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
+alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
+
+# eg "psg mysql" to see all mysql processes
+function psg {
+  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+}
+
+# Display folder and it's content as a tree
+function tree {
+  find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+}
+
+# GIT & prompt
+
+alias g=git
+alias grc='git rebase --continue'
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  host="\[\e[01;35m\]\u@\h\[\e[0m\]"
+else
+  host="\[\e[01;30m\]\h\[\e[0m\]"
+fi
+
+export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\] $ "
+
+alias rsink='rsync --archive --compress --verbose --progress --human-readable'
+alias rsinkd='rsink --delete'
+
+###############################################################################
+# Node.js
+###############################################################################
+
+# NVM
+if [ -s "$HOME/.nvm/nvm.sh" ]
+then
+  export NVM_DIR="$HOME/.nvm"
+  . "$NVM_DIR/nvm.sh"
+fi;
+
+if [ -s /usr/local/opt/nvm/nvm.sh ]
+then
+  export NVM_DIR=/usr/local/opt/nvm
+  . /usr/local/opt/nvm/nvm.sh
+fi;
+
+alias nbump='npm version patch'
+alias npub='npm version patch && git push --tags origin HEAD && npm publish'
+alias nup='npm-check-updates --upgrade --upgradeAll && npm update && npm prune'
+alias n='npm'
+alias nt='npm test'
+alias nr='npm run'
+alias links='ll node_modules | grep \\-\>'
+
+function ni  {
+  npm install            $1 && npm prune
+}
+function nis {
+  npm install --save     $1 && npm prune
+}
+function nid {
+  npm install --save-dev $1 && npm prune
+}
+
+function nv {
+  npm show $1 versions
+}
+
+###############################################################################
+# Go
+###############################################################################
+
+export GOPATH=~/gocode
+export PATH=$PATH:$GOPATH/bin
+
+###############################################################################
+# Java
+###############################################################################
+
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+alias mvn='jenv exec mvn'
+
+###############################################################################
+# OSX
+###############################################################################
+
+if [ $OSTYPE != 'linux-gnu' ]; then
+
+  export PATH="~/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
+
+  export MANPATH=$MANPATH:/opt/local/man
+  export EDITOR='atom'
+
+  # requires `npm install --global tmpin`
+  function gda {
+    git diff $1 | tmpin atom
+  }
+
+  # For homebrew-based mysql install:
+  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
+  alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
+
+fi
+
+###############################################################################
+# Other
+###############################################################################
+
+alias hs='http-server -c-1'
+
+alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
+alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
+alias tomcat-stop='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
+
+if [ $OSTYPE == 'linux-gnu' ]; then
+  export EDITOR=`which nano`
+fi
+
+alias si='[[ -s bin/shipit ]] && bin/shipit || npm run shipit'
+
+# This echoes a bunch of color codes to the terminal to demonstrate
+# what's available. Each line is the color code of one forground color,
+# out of 17 (default + 16 escapes), followed by a test use of that color
+# on all nine background colors (default + 8 escapes).
+# from http://bitmote.com/index.php?post/2012/11/19/Using-ANSI-Color-Codes-to-Colorize-Your-Bash-Prompt-on-Linux
+#
+function colors {
+  T='Fox'   # The test text
+  echo -e "\n                 40m     41m     42m     43m     44m     45m     46m     47m";
+  for FGs in '    m' '   1m' '  30m' '1;30m' '  31m' '1;31m' '  32m' '1;32m' '  33m' '1;33m' '  34m' '1;34m' '  35m' '1;35m' '  36m' '1;36m' '  37m' '1;37m';
+    do FG=${FGs// /}
+    echo -en " $FGs \033[$FG  $T  "
+    for BG in 40m 41m 42m 43m 44m 45m 46m 47m;
+      do echo -en "$EINS \033[$FG\033[$BG  $T \033[0m\033[$BG \033[0m";
+    done
+    echo;
+  done
+  echo
+}
+
+###############################################################################
+# Ruby
+###############################################################################
+
+# RVM  -- WE NEED TO DO THIS LAST, GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Bundler
+
+alias be='bundle exec'
+alias bi='bundle install'
+alias biq='bi --quiet'
+alias biw='bi --without=development:test'
+alias bid='biw --deployment'
+alias bis='gemrat --no-version'  # implements missing `bundle install --save` -- requires you first `gem install gemrat`
+
+# Foreman
+alias frun='be foreman run'
+alias fcon='be foreman run irb'
+alias fser='biq && be rerun foreman start'
+
+# Rails
+
+alias sp='bin/rspec --color'
+alias sn='sp --format documentation'
+alias sf='sp --require fuubar --format Fuubar'
+
+alias r='bin/rails'
+alias rs='biq && be foreman run "rails server"'
+
+alias br='bundle exec rake'
+alias rdr='br db:rebuild'
+alias rdm='be rake db:migrate'
+alias rtp='br db:test:prepare'
+alias rds='br db:seed'
+
+alias ss='spring stop'

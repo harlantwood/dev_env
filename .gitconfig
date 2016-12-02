@@ -1,0 +1,82 @@
+#
+# Project level settings are highest priority ("local wins"), from <project dir>/.git/config
+# Then user level settings from this file (~/.gitconfig)
+# Then system level settings, from (on OSX using macports) /opt/local/etc/gitconfig
+#
+# To use this as your user level gitconfig:
+# ln -s /path/to/gitconfig ~/.gitconfig
+#
+# To use it as your system level gitconfig:
+# sudo ln -s /path/to/gitconfig /opt/local/etc/gitconfig
+#
+
+[core]
+	# ignorecase = false
+	autocrlf = false
+	editor = atom -w
+	excludesfile = ~/.gitignore
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	mergeoptions = --no-edit
+
+[push]
+	default = matching
+
+[branch]
+	autosetupmerge = true
+
+[merge]
+	tool = opendiff
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = magenta reverse
+	local = magenta
+	remote = green
+
+[color "diff"]
+	meta = blue bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[alias]
+	a = !git config --list | grep alias
+	br = branch -v
+	ba = branch -v -a
+	ca = commit --amend
+	can = commit --amend --no-edit
+	car = commit --amend --reset-author
+	ci = commit
+	cl = config --list
+	co = checkout
+	cp = cherry-pick
+	df = diff --ignore-all-space
+	dr = push origin --delete	# delete remote branch
+	ds = diff --ignore-all-space --staged
+	dv = diff --ignore-all-space --unified=50		# note: --unified=<number of lines of context around diff>
+	ft = fetch
+	gp = gh-pages-push
+	l = log --oneline --decorate --graph --branches --remotes --tags
+	ld = log --oneline --decorate --graph --branches --remotes --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
+	lt = log --oneline --decorate --graph --branches --remotes --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=relative
+	lv = log -p
+	ms = merge --squash
+	pr = pull --rebase --autostash
+	ps = push --tags origin HEAD
+	ra = rebase --abort
+	rc = rebase --continue
+	rh = reset --hard
+	ss = stash save
+	sa = stash apply
+	sp = stash pop
+	st = status
+	today = log --pretty=format:"%s%b" --since="midnight" --reverse
+	up = pull --rebase --autostash	# requires git 2.9+
+	# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
+	# up = !git fetch && git rebase --autostash FETCH_HEAD
+
+[user]
+	name = Harlan T Wood
+	email = code@harlantwood.net

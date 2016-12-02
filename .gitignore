@@ -1,0 +1,15 @@
+.DS_Store
+.swo
+.tags
+.tags[0-9]*
+*.scratch.*
+*.swp
+db/*.db
+db/*.sqlite3
+doc/api
+doc/app
+jferris-*.gemspec
+log/*.log
+log/searchd.*
+npm-debug.log
+tmp/

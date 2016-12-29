@@ -166,6 +166,44 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 fi
 
 ###############################################################################
+# Ruby
+###############################################################################
+
+# RVM  -- WE NEED TO DO THIS LAST(ISH); GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Bundler
+
+alias be='bundle exec'
+alias bi='bundle install'
+alias biq='bi --quiet'
+alias biw='bi --without=development:test'
+alias bid='biw --deployment'
+alias bis='gemrat --no-version'  # implements missing `bundle install --save` -- requires you first `gem install gemrat`
+
+# Foreman
+alias frun='be foreman run'
+alias fcon='be foreman run irb'
+alias fser='biq && be rerun foreman start'
+
+# Rails
+
+alias sp='bin/rspec --color'
+alias sn='sp --format documentation'
+alias sf='sp --require fuubar --format Fuubar'
+
+alias r='bin/rails'
+alias rs='biq && be foreman run "rails server"'
+
+alias br='bundle exec rake'
+alias rdr='br db:rebuild'
+alias rdm='be rake db:migrate'
+alias rtp='br db:test:prepare'
+alias rds='br db:seed'
+
+alias ss='spring stop'
+
+###############################################################################
 # Other
 ###############################################################################
 
@@ -200,41 +238,3 @@ function colors {
   done
   echo
 }
-
-###############################################################################
-# Ruby
-###############################################################################
-
-# RVM  -- WE NEED TO DO THIS LAST, GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# Bundler
-
-alias be='bundle exec'
-alias bi='bundle install'
-alias biq='bi --quiet'
-alias biw='bi --without=development:test'
-alias bid='biw --deployment'
-alias bis='gemrat --no-version'  # implements missing `bundle install --save` -- requires you first `gem install gemrat`
-
-# Foreman
-alias frun='be foreman run'
-alias fcon='be foreman run irb'
-alias fser='biq && be rerun foreman start'
-
-# Rails
-
-alias sp='bin/rspec --color'
-alias sn='sp --format documentation'
-alias sf='sp --require fuubar --format Fuubar'
-
-alias r='bin/rails'
-alias rs='biq && be foreman run "rails server"'
-
-alias br='bundle exec rake'
-alias rdr='br db:rebuild'
-alias rdm='be rake db:migrate'
-alias rtp='br db:test:prepare'
-alias rds='br db:seed'
-
-alias ss='spring stop'

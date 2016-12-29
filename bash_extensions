@@ -75,6 +75,7 @@ alias rsinkd='rsink --delete'
 ###############################################################################
 
 # NVM
+
 if [ -s "$HOME/.nvm/nvm.sh" ]
 then
   export NVM_DIR="$HOME/.nvm"
@@ -86,6 +87,8 @@ then
   export NVM_DIR=/usr/local/opt/nvm
   . /usr/local/opt/nvm/nvm.sh
 fi;
+
+# NPM
 
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
@@ -109,6 +112,22 @@ function nv {
   npm show $1 versions
 }
 
+# Yarn
+
+export PATH="$PATH:`yarn global bin`"
+
+alias yup='ncu --upgrade --upgradeAll && yarn upgrade'
+alias y='yarn'
+alias yt='yarn test'
+alias yr='yarn run'
+
+function yi {
+  yarn add $*
+}
+function yid {
+  yarn add $* --dev
+}
+
 ###############################################################################
 # Go
 ###############################################################################
@@ -120,7 +139,8 @@ export PATH=$PATH:$GOPATH/bin
 # Java
 ###############################################################################
 
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
 alias mvn='jenv exec mvn'
 
 ###############################################################################

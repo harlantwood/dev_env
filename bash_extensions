@@ -88,11 +88,27 @@ then
   . /usr/local/opt/nvm/nvm.sh
 fi;
 
+# Yarn
+
+export PATH="$PATH:`yarn global bin`"
+
+alias yup='ncu --upgrade --upgradeAll && yarn upgrade'  # yarn global add npm-check-updates
+alias y='yarn'
+alias yt='yarn test'
+alias yr='yarn run'
+
+function ya {
+  yarn add $*
+}
+function yad {
+  yarn add $* --dev
+}
+
 # NPM
 
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-alias nup='npm-check-updates --upgrade --upgradeAll && npm update && npm prune'
+alias nup='ncu --upgrade --upgradeAll && npm update && npm prune'  # npm i -g npm-check-updates
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'
@@ -110,22 +126,6 @@ function nid {
 
 function nv {
   npm show $1 versions
-}
-
-# Yarn
-
-export PATH="$PATH:`yarn global bin`"
-
-alias yup='ncu --upgrade --upgradeAll && yarn upgrade'
-alias y='yarn'
-alias yt='yarn test'
-alias yr='yarn run'
-
-function yi {
-  yarn add $*
-}
-function yid {
-  yarn add $* --dev
 }
 
 ###############################################################################

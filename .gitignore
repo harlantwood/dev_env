@@ -1,9 +1,9 @@
-.idea/
 .DS_Store
 .swo
 .tags
 .tags[0-9]*
 *.scratch.*
 *.swp
+/.idea/
 npm-debug.log
-tmp/
+yarn-error.log

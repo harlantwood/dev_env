@@ -97,6 +97,9 @@ alias y='yarn'
 alias yt='yarn test'
 alias yr='yarn run'
 
+function yi {
+  yarn add $*
+}
 function ya {
   yarn add $*
 }
@@ -134,6 +137,7 @@ function nv {
 
 export GOPATH=~/gocode
 export PATH=$PATH:$GOPATH/bin
+alias igo='gore'
 
 ###############################################################################
 # Java
@@ -162,6 +166,9 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   # For homebrew-based mysql install:
   alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
   alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
+
+  alias camera='sudo killall VDCAssistant'
+  # if that fails, add or try: sudo killall AppleCameraAssistant
 
 fi
 

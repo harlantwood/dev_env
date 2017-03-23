@@ -43,6 +43,8 @@
 
 [alias]
 	a = !git config --list | grep alias
+	anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'   # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
+	bd = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	br = branch -v
 	ba = branch -v -a
 	ca = commit --amend
@@ -52,6 +54,7 @@
 	cl = config --list
 	co = checkout
 	cp = cherry-pick
+	cpc = cherry-pick --continue
 	df = diff --ignore-all-space
 	dr = push origin --delete	# delete remote branch
 	ds = diff --ignore-all-space --staged
@@ -64,7 +67,7 @@
 	lv = log -p
 	ms = merge --squash
 	pr = pull --rebase --autostash
-	ps = push --tags origin HEAD
+	ps = push --tags --set-upstream origin HEAD
 	ra = rebase --abort
 	rc = rebase --continue
 	rh = reset --hard

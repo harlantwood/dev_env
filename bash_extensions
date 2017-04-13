@@ -224,7 +224,7 @@ if [ $OSTYPE == 'linux-gnu' ]; then
   export EDITOR=`which nano`
 fi
 
-alias si='[[ -s bin/shipit ]] && bin/shipit || npm run shipit'
+alias si='[[ -s bin/shipit ]] && bin/shipit || yarn run shipit'
 
 # This echoes a bunch of color codes to the terminal to demonstrate
 # what's available. Each line is the color code of one forground color,

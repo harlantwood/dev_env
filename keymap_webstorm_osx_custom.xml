@@ -1,0 +1,54 @@
+<keymap version="1" name="custom" parent="Mac OS X 10.5+">
+  <action id="EditSource">
+    <keyboard-shortcut first-keystroke="f4" />
+  </action>
+  <action id="EditorTextEnd">
+    <keyboard-shortcut first-keystroke="meta end" />
+    <keyboard-shortcut first-keystroke="meta down" />
+  </action>
+  <action id="EditorTextStart">
+    <keyboard-shortcut first-keystroke="meta home" />
+    <keyboard-shortcut first-keystroke="meta up" />
+  </action>
+  <action id="IntroduceVariable">
+    <keyboard-shortcut first-keystroke="ctrl meta alt v" />
+  </action>
+  <action id="Javascript.Linters.EsLint.Fix">
+    <keyboard-shortcut first-keystroke="meta alt l" />
+  </action>
+  <action id="NextSplitter">
+    <keyboard-shortcut first-keystroke="alt tab" />
+    <keyboard-shortcut first-keystroke="shift ctrl n" />
+  </action>
+  <action id="ReformatCode" />
+  <action id="Rerun">
+    <keyboard-shortcut first-keystroke="ctrl meta alt r" />
+  </action>
+  <action id="ShowNavBar">
+    <keyboard-shortcut first-keystroke="alt home" />
+  </action>
+  <action id="SplitHorizontally">
+    <keyboard-shortcut first-keystroke="shift ctrl h" />
+  </action>
+  <action id="SplitVertically">
+    <keyboard-shortcut first-keystroke="shift ctrl v" />
+  </action>
+  <action id="SwitchApply">
+    <keyboard-shortcut first-keystroke="ctrl alt enter" />
+  </action>
+  <action id="SwitchDown">
+    <keyboard-shortcut first-keystroke="ctrl alt down" />
+  </action>
+  <action id="SwitchLeft">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+  </action>
+  <action id="SwitchRight">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+  </action>
+  <action id="SwitchUp">
+    <keyboard-shortcut first-keystroke="ctrl alt up" />
+  </action>
+  <action id="UnsplitAll">
+    <keyboard-shortcut first-keystroke="shift ctrl u" />
+  </action>
+</keymap>

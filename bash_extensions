@@ -177,6 +177,7 @@ fi
 ###############################################################################
 
 # RVM  -- WE NEED TO DO THIS LAST(ISH); GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
+export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Bundler

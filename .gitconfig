@@ -80,6 +80,3 @@
 	# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
 	# up = !git fetch && git rebase --autostash FETCH_HEAD
 
-[user]
-	name = Harlan T Wood
-	email = code@harlantwood.net

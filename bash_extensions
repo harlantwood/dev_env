@@ -71,20 +71,55 @@ alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
 
 ###############################################################################
+# Go
+###############################################################################
+
+export GOPATH=~/gocode
+export PATH=$PATH:$GOPATH/bin
+alias igo='gore'
+
+###############################################################################
+# Java
+###############################################################################
+
+eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
+alias mvn='jenv exec mvn'
+
+###############################################################################
+# OSX
+###############################################################################
+
+if [ $OSTYPE != 'linux-gnu' ]; then
+
+  export PATH="~/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
+
+  export MANPATH=$MANPATH:/opt/local/man
+  export EDITOR='atom'
+
+  # requires `npm install --global tmpin`
+  function gda {
+    git diff $1 | tmpin atom
+  }
+
+  # For homebrew-based mysql install:
+  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
+  alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
+
+  alias camera='sudo killall VDCAssistant'
+  # if that fails, add or try: sudo killall AppleCameraAssistant
+
+fi
+
+###############################################################################
 # Node.js
 ###############################################################################
 
 # NVM
 
-if [ -s "$HOME/.nvm/nvm.sh" ]
-then
-  export NVM_DIR="$HOME/.nvm"
-  . "$NVM_DIR/nvm.sh"
-fi;
-
+export NVM_DIR="$HOME/.nvm"
 if [ -s /usr/local/opt/nvm/nvm.sh ]
 then
-  export NVM_DIR=/usr/local/opt/nvm
   . /usr/local/opt/nvm/nvm.sh
 fi;
 
@@ -132,53 +167,16 @@ function nv {
 }
 
 ###############################################################################
-# Go
-###############################################################################
-
-export GOPATH=~/gocode
-export PATH=$PATH:$GOPATH/bin
-alias igo='gore'
-
-###############################################################################
-# Java
-###############################################################################
-
-eval "$(jenv init -)"
-export PATH="$HOME/.jenv/bin:$PATH"
-alias mvn='jenv exec mvn'
-
-###############################################################################
-# OSX
-###############################################################################
-
-if [ $OSTYPE != 'linux-gnu' ]; then
-
-  export PATH="~/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
-
-  export MANPATH=$MANPATH:/opt/local/man
-  export EDITOR='atom'
-
-  # requires `npm install --global tmpin`
-  function gda {
-    git diff $1 | tmpin atom
-  }
-
-  # For homebrew-based mysql install:
-  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
-  alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
-
-  alias camera='sudo killall VDCAssistant'
-  # if that fails, add or try: sudo killall AppleCameraAssistant
-
-fi
-
-###############################################################################
 # Ruby
 ###############################################################################
 
 # RVM  -- WE NEED TO DO THIS LAST(ISH); GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Citizen gem
+
+alias c='biq && citizen'
 
 # Bundler
 
@@ -190,6 +188,7 @@ alias bid='biw --deployment'
 alias bis='gemrat --no-version'  # implements missing `bundle install --save` -- requires you first `gem install gemrat`
 
 # Foreman
+
 alias frun='be foreman run'
 alias fcon='be foreman run irb'
 alias fser='biq && be rerun foreman start'

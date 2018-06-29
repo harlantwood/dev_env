@@ -25,7 +25,7 @@
 	cp = cherry-pick
 	cpc = cherry-pick --continue
 	df = diff --ignore-all-space --find-renames
-	dr = push origin --delete	# delete remote branch
+	delrem = push origin --delete	# delete remote branch
 	ds = diff --ignore-all-space --find-renames --staged
 	dv = diff --ignore-all-space --find-renames --unified=50		# note: --unified=<number of lines of context around diff>
 	ft = fetch

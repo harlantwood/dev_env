@@ -15,6 +15,10 @@
 # Basics
 ###############################################################################
 
+# fixes https://github.com/asdf-vm/asdf/issues/279#issue-290858023
+# and possibly other issues:
+touch $HOME/.bash_sessions_disable
+
 ulimit -n 1024
 
 alias ll='ls -lFh'
@@ -54,6 +58,7 @@ function tree {
 
 alias g=git
 alias grc='git rebase --continue'
+alias wip='git commit -m WIP .'
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
@@ -65,10 +70,22 @@ else
   host="\[\e[01;30m\]\h\[\e[0m\]"
 fi
 
-export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\] $ "
+export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]==> $ \[\e[0m\]"
 
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
+
+###############################################################################
+# AWS
+###############################################################################
+
+alias ecs='ecs-cli'
+
+###############################################################################
+# Docker
+###############################################################################
+
+alias d='docker'
 
 ###############################################################################
 # Go
@@ -95,12 +112,15 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   export PATH="~/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
 
   export MANPATH=$MANPATH:/opt/local/man
-  export EDITOR='atom'
+  export EDITOR='code'
+  alias vs=code
 
-  # requires `npm install --global tmpin`
-  function gda {
-    git diff $1 | tmpin atom
-  }
+  #   alias toatom='tmpin atom'
+  #
+  #   # requires `npm install --global tmpin`
+  #   function gda {
+  #     git diff $1 | toatom
+  #   }
 
   # For homebrew-based mysql install:
   alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
@@ -127,7 +147,7 @@ fi;
 
 export PATH="$PATH:`yarn global bin`"
 
-alias yup='ncu --upgrade --upgradeAll && yarn upgrade'  # yarn global add npm-check-updates
+alias yup='ncu --upgrade --upgradeAll && yarn && yarn upgrade'  # yarn global add npm-check-updates
 alias y='yarn'
 alias yt='yarn test'
 alias yr='yarn run'
@@ -174,9 +194,9 @@ function nv {
 export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# Citizen gem
+# citizen-scripts gem
 
-alias c='biq && citizen'
+alias c='biq && be citizen'
 
 # Bundler
 
@@ -211,14 +231,26 @@ alias rds='br db:seed'
 alias ss='spring stop'
 
 ###############################################################################
+# asdf
+###############################################################################
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+###############################################################################
 # Other
 ###############################################################################
 
 alias hs='http-server -c-1'
 
-alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
-alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
-alias tomcat-stop='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
+alias pjson='underscore print --color'
+
+alias pgstart='pg_ctl -D /usr/local/var/postgres start'
+alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
+
+#alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
+#alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
+#alias tomcat-stop='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
 
 if [ $OSTYPE == 'linux-gnu' ]; then
   export EDITOR=`which nano`

@@ -10,42 +10,6 @@
 # sudo ln -s /path/to/gitconfig /opt/local/etc/gitconfig
 #
 
-[core]
-	# ignorecase = false
-	autocrlf = false
-	editor = code --wait --new-window
-	excludesfile = ~/.gitignore
-	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	mergeoptions = --no-edit
-
-[push]
-	default = matching
-
-[branch]
-	autosetupmerge = true
-
-[merge]
-	tool = opendiff
-
-[color]
-	ui = auto
-
-[color "branch"]
-	current = magenta reverse
-	local = magenta
-	remote = green
-
-[color "diff"]
-	meta = blue bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-
-[diff]
-    tool = default-difftool
-[difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-
 [alias]
 	a = !git config --list | grep alias
 	anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'   # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
@@ -88,3 +52,41 @@
 	up = pull --rebase --autostash	# requires git 2.9+
 	# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
 	# up = !git fetch && git rebase --autostash FETCH_HEAD
+
+[branch]
+	autosetupmerge = true
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = magenta reverse
+	local = magenta
+	remote = green
+
+[color "diff"]
+	meta = blue bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[core]
+	# ignorecase = false
+	autocrlf = false
+	editor = code --wait --new-window
+	excludesfile = ~/.gitignore
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	mergeoptions = --no-edit
+
+[diff]
+    tool = default-difftool
+
+[difftool "default-difftool"]
+    cmd = code --wait --new-window --diff $LOCAL $REMOTE
+
+[push]
+	default = matching
+
+[merge]
+	tool = opendiff
+

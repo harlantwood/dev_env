@@ -1,7 +1,9 @@
 .DS_Store
+.elixir_ls/
 .swo
 .tags
 .tags[0-9]*
+.vscode/
 *.scratch.*
 *.swp
 /.idea/

@@ -70,7 +70,29 @@ else
   host="\[\e[01;30m\]\h\[\e[0m\]"
 fi
 
-export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]==> $ \[\e[0m\]"
+# from https://stackoverflow.com/a/3499237/1533892
+_dir_chomp () {
+    local p=${1/#$HOME/\~} b s
+    s=${#p}
+    while [[ $p != "${p//\/}" ]]&&(($s>$2))
+    do
+        p=${p#/}
+        [[ $p =~ \.?. ]]
+        b=$b/${BASH_REMATCH[0]}
+        p=${p#*/}
+        ((s=${#b}+${#p}))
+    done
+    echo ${b/\/~/\~}${b+/}$p
+}
+
+export PS1='\[\e[01;30m\]\h\[\e[0m\] $( _dir_chomp "$(pwd)" 20 )\[\e[01;32m\]$(parse_git_branch)\[\e[01;30m\] \$\[\033[00m\] '
+
+# export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]==> $ \[\e[0m\]"
+
+# export PS1='$(eval "sps")$ '
+# sps() {
+#    echo "$PWD" | gsed -r 's|/([^/]{,2})[^/]*|/\1|g'
+# }
 
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
@@ -86,6 +108,15 @@ alias ecs='ecs-cli'
 ###############################################################################
 
 alias d='docker'
+alias dc='docker-compose'
+alias dnuke='docker container rm --force --volumes $(docker container ls --quiet --all) ; docker network rm $(docker network ls -q)'
+
+###############################################################################
+# Elixir / Erlang
+###############################################################################
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+alias m='mix'
 
 ###############################################################################
 # Go
@@ -102,6 +133,19 @@ alias igo='gore'
 eval "$(jenv init -)"
 export PATH="$HOME/.jenv/bin:$PATH"
 alias mvn='jenv exec mvn'
+
+###############################################################################
+# Qt
+###############################################################################
+
+export PATH="/usr/local/opt/qt/bin:$PATH"
+
+# For compilers to find this software you may need to set:
+export LDFLAGS='-L/usr/local/opt/qt/lib'
+export CPPFLAGS='-I/usr/local/opt/qt/include'
+
+# For pkg-config to find this software you may need to set:
+export PKG_CONFIG_PATH='/usr/local/opt/qt/lib/pkgconfig'
 
 ###############################################################################
 # OSX
@@ -147,7 +191,8 @@ fi;
 
 export PATH="$PATH:`yarn global bin`"
 
-alias yup='ncu --upgrade --upgradeAll && yarn && yarn upgrade'  # yarn global add npm-check-updates
+alias yup='npm-check-updates --upgrade --upgradeAll && yarn && yarn upgrade'  # npm install -g npm-check-updates
+
 alias y='yarn'
 alias yt='yarn test'
 alias yr='yarn run'

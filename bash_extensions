@@ -97,6 +97,8 @@ export PS1='\[\e[01;30m\]\h\[\e[0m\] $( _dir_chomp "$(pwd)" 20 )\[\e[01;32m\]$(p
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
 
+alias pg='ping www.google.com'
+
 ###############################################################################
 # AWS
 ###############################################################################

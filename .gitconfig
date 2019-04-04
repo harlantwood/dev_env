@@ -23,8 +23,8 @@
 	ci = commit
 	cl = config --list
 	co = checkout
-	cp = cherry-pick
-	cpc = cherry-pick --continue
+	cp = cherry-pick --strategy-option=patience
+	cpc = cherry-pick --strategy-option=patience --continue
 	delrem = push origin --delete	# delete remote branch
 	df = diff --ignore-all-space --find-renames
 	ds = diff --ignore-all-space --find-renames --staged
@@ -44,7 +44,7 @@
 	psforce = push --force-with-lease origin HEAD
 	ra = rebase --abort
 	rc = rebase --continue
-	rod = !git fetch && git rebase origin/develop
+	rod = !git fetch && git rebase origin/development
 	rom = !git fetch && git rebase origin/master
 	rh = reset --hard
 	ri = rebase -i
@@ -83,13 +83,23 @@
 	mergeoptions = --no-edit
 
 [diff]
-    tool = default-difftool
+  tool = default-difftool
 
 [difftool "default-difftool"]
-    cmd = code --wait --new-window --diff $LOCAL $REMOTE
+  cmd = code --wait --new-window --diff $LOCAL $REMOTE
+
+[log]
+	follow = true
+
+[merge]
+	tool = opendiff
 
 [push]
 	default = matching
 
-[merge]
-	tool = opendiff
+[user]
+	name = Harlan T Wood
+	initials = hw
+	email = hwood@sharespost.com
+[url "git@github.com:privsecx/"]
+	insteadOf = https://github.com/privsecx/

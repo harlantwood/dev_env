@@ -95,7 +95,7 @@
 	tool = opendiff
 
 [push]
-	default = matching
+	default = current
 
 [user]
 	name = Harlan T Wood

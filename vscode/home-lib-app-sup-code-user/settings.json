@@ -35,7 +35,7 @@
   "window.newWindowDimensions": "maximized",
   "window.openFoldersInNewWindow": "on",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "dark+(elixir)",
   "workbench.editor.enablePreview": false,

@@ -9,5 +9,6 @@
 /.idea/
 /*.iml
 npm-debug.log
-yarn-error.log
+vscode/home-lib-app-sup-code-user/globalStorage
 vscode/home-lib-app-sup-code-user/workspaceStorage
+yarn-error.log

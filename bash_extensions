@@ -15,6 +15,12 @@
 # Basics
 ###############################################################################
 
+# lots of history, available from all tabs and terminals:
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=1000000                  # big big history
+export HISTFILESIZE=1000000              # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+
 # fixes https://github.com/asdf-vm/asdf/issues/279#issue-290858023
 # and possibly other issues:
 touch $HOME/.bash_sessions_disable

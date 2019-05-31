@@ -9,12 +9,19 @@
     "sharded",
     "sharex"
   ],
+  "[ruby]": {
+    "editor.formatOnSave": true
+  },
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.fontFamily": "Fira Code, Inconsolata, Hack, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveTimeout": 1500,
   "editor.insertSpaces": true,
   "editor.minimap.enabled": false,
   "editor.tabSize": 2,
@@ -29,8 +36,11 @@
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "git.ignoreMissingGitWarning": true,
-  "gitlens.advanced.messages": { "suppressShowKeyBindingsNotice": true },
   "markdown.extension.orderedList.autoRenumber": false,
+  "ruby.codeCompletion": "rcodetools",
+  "ruby.format": "rubocop",
+  "ruby.intellisense": "rubyLocate",
+  "ruby.useLanguageServer": true,
   "search.location": "panel",
   "window.newWindowDimensions": "maximized",
   "window.openFoldersInNewWindow": "on",
@@ -40,11 +50,5 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "newUntitledFile",
-  "[ruby]": { "editor.formatOnSave": true },
-  "ruby.format": "rubocop",
-"editor.formatOnSaveTimeout": 1500,
-"ruby.codeCompletion": "rcodetools",
-"ruby.intellisense": "rubyLocate",
-"ruby.useLanguageServer": true
+  "workbench.startupEditor": "newUntitledFile"
 }

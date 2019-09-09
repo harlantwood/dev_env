@@ -71,39 +71,52 @@ alias g=git
 alias grc='git rebase --continue'
 alias wip='git commit -m WIP .'
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-}
+export GIT_DUET_CO_AUTHORED_BY=1
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  host="\[\e[01;35m\]\u@\h\[\e[0m\]"
-else
-  host="\[\e[01;30m\]\h\[\e[0m\]"
-fi
+# parse_git_branch() {
+#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+# }
 
-# from https://stackoverflow.com/a/3499237/1533892
-_dir_chomp () {
-    local p=${1/#$HOME/\~} b s
-    s=${#p}
-    while [[ $p != "${p//\/}" ]]&&(($s>$2))
-    do
-        p=${p#/}
-        [[ $p =~ \.?. ]]
-        b=$b/${BASH_REMATCH[0]}
-        p=${p#*/}
-        ((s=${#b}+${#p}))
-    done
-    echo ${b/\/~/\~}${b+/}$p
-}
+# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#   host="\[\e[01;35m\]\u@\h\[\e[0m\]"
+# else
+#   host="\[\e[01;30m\]\h\[\e[0m\]"
+# fi
+
+# # from https://stackoverflow.com/a/3499237/1533892
+# _dir_chomp () {
+#     local p=${1/#$HOME/\~} b s
+#     s=${#p}
+#     while [[ $p != "${p//\/}" ]]&&(($s>$2))
+#     do
+#         p=${p#/}
+#         [[ $p =~ \.?. ]]
+#         b=$b/${BASH_REMATCH[0]}
+#         p=${p#*/}
+#         ((s=${#b}+${#p}))
+#     done
+#     echo ${b/\/~/\~}${b+/}$p
+# }
 
 # export PS1='\[\e[01;30m\]\h\[\e[0m\] $( _dir_chomp "$(pwd)" 20 )\[\e[01;32m\]$(parse_git_branch)\[\e[01;30m\] \$\[\033[00m\] '
 
-export PS1="\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"
+# export PS1="\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"
 
 # export PS1='$(eval "sps")$ '
 # sps() {
 #    echo "$PWD" | gsed -r 's|/([^/]{,2})[^/]*|/\1|g'
 # }
+
+# This prompt setup requires:
+# brew install bash-completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWCOLORHINTS=1
+export PROMPT_COMMAND='__git_ps1 "\W" "\\\$ "'
+export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
+# export PS1="\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"
+
 
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
@@ -217,9 +230,12 @@ function nv {
 # Ruby
 ###############################################################################
 
+# rbenv:
+eval "$(rbenv init -)"
+
 # RVM  -- WE NEED TO DO THIS LAST(ISH); GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# export PATH="$HOME/.rvm/bin:$PATH:$HOME/.rvm/bin"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # citizen-scripts gem
 
@@ -274,6 +290,8 @@ alias pjson='underscore print --color'
 
 alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
+
+export PATH=/usr/local/opt/postgresql\@10/bin:$PATH
 
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'

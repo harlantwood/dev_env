@@ -47,6 +47,7 @@
   "files.trimTrailingWhitespace": true,
   "git.ignoreMissingGitWarning": true,
   "markdown.extension.orderedList.autoRenumber": false,
+  "plantuml.exportOutDir": ".",
   "ruby.codeCompletion": "rcodetools",
   "ruby.format": "rubocop",
   "ruby.intellisense": false,
@@ -64,5 +65,6 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "Quiet Light"
 }

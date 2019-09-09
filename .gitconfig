@@ -15,6 +15,7 @@
 	anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'   # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
 	ba = branch -v -a
 	bd = for-each-ref --sort=committerdate refs/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	bh = !git bd | grep Harlan
 	br = branch -v
 	ca = commit --amend
 	can = commit --amend --no-edit
@@ -25,6 +26,7 @@
 	co = checkout
 	dev = !git fetch && git co development && git up
 	cp = cherry-pick --strategy-option=patience
+	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 	delrem = push origin --delete	# delete remote branch
 	df = diff --ignore-all-space --find-renames
@@ -33,6 +35,7 @@
 	ft = fetch
 	gp = gh-pages-push
 	l   = log --oneline --decorate --graph --tags --remotes --branches
+	l1  = log --oneline
 	ls  = log --oneline --decorate --graph --tags
 	lt  = log --oneline --decorate --graph --tags --remotes --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 	lst = log --oneline --decorate --graph --tags                      --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
@@ -48,14 +51,26 @@
 	ra = rebase --abort
 	rc = rebase --continue
 	rod = !git fetch && git rebase origin/development
-	riod = !git fetch && git rebase --interactive origin/development
+	riod = rebase --interactive origin/development
+	riom = rebase --interactive origin/master
 	rom = !git fetch && git rebase origin/master
-	riom = !git fetch && git rebase --interactive origin/master
 	rh = reset --hard
 	ri = rebase -i
 	sa = stash apply
+	sa0 = stash apply stash@{0}
+	sa1 = stash apply stash@{1}
+	sa2 = stash apply stash@{2}
+	sa3 = stash apply stash@{3}
+	sa4 = stash apply stash@{4}
+	sa5 = stash apply stash@{5}
 	sp = stash pop
 	ss = stash save
+	s0 = stash show -v stash@{0}
+	s1 = stash show -v stash@{1}
+	s2 = stash show -v stash@{2}
+	s3 = stash show -v stash@{3}
+	s4 = stash show -v stash@{4}
+	s5 = stash show -v stash@{5}
 	st = status
 	today = log --pretty=format:"%s%b" --since="midnight" --reverse
 	up = pull --rebase --autostash	# requires git 2.9+

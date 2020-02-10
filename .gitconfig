@@ -115,11 +115,4 @@
 	tool = opendiff
 
 [push]
-	default = current
-
-[user]
-	name = Harlan T Wood
-	initials = hw
-	email = hwood@sharespost.com
-[url "git@github.com:privsecx/"]
-	insteadOf = https://github.com/privsecx/
+	default = simple

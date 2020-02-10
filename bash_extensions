@@ -186,7 +186,7 @@ export NVM_DIR="$HOME/.nvm"
 
 sleep 0.1 && export PATH="$PATH:`yarn global bin`"
 
-alias yup='npm-check-updates --upgrade --upgradeAll && yarn && yarn upgrade'  # npm install -g npm-check-updates
+alias yup='npm-check-updates --upgrade && yarn && yarn upgrade'  # if this fails:  `npm upgrade -g npm-check-updates`
 
 alias y='yarn'
 alias yt='yarn test'

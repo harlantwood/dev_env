@@ -10,16 +10,24 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 ###############################################################################
 # Basics
 ###############################################################################
 
+# lots of history, available from all tabs and terminals:
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=1000000                  # big big history
+export HISTFILESIZE=1000000              # big big history
+# shopt -s histappend                      # append to history, don't overwrite it
+
 # fixes https://github.com/asdf-vm/asdf/issues/279#issue-290858023
 # and possibly other issues:
-touch $HOME/.bash_sessions_disable
+# touch $HOME/.bash_sessions_disable
 
 ulimit -n 1024
+
+# securely erase files before removing:
+alias rms='rm -P'
 
 alias ll='ls -lFh'
 alias lla='ls -lFah'
@@ -31,22 +39,34 @@ alias pop='popd'
 alias a=alias
 alias h='history | tail -50'
 
+alias hk=heroku
+
 # eg "ag rake" to see all rake-related aliases
 function ga {
   alias | grep "$1" | grep -v grep
 }
 
-alias ebp='$EDITOR ~/.bash_profile'
-alias ebpe='$EDITOR ~/.dev_env'
-alias sbp='. ~/.bash_profile'
+alias ezsh='$EDITOR ~/.zshrc'
+alias ezshe='$EDITOR ~/.dev_env'
+alias szsh='. ~/.zshrc'
 
 # remove all .svn dirs in the current dir and subdirs
 alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
 alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 
+alias rsink='rsync --archive --compress --verbose --progress --human-readable'
+alias rsinkd='rsink --delete'
+
+alias pg='ping www.google.com'
+
 # eg "psg mysql" to see all mysql processes
 function psg {
   ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+}
+
+# eg "port 3000" to see what is running there
+function port {
+  lsof -i -n -P | grep TCP | grep "$1"
 }
 
 # Display folder and it's content as a tree
@@ -54,50 +74,20 @@ function tree {
   find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }
 
-# GIT & prompt
+# GIT
 
 alias g=git
-alias grc='git rebase --continue'
-alias wip='git commit -m WIP .'
+alias wip='git commit -m WIP'
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-}
+export GIT_DUET_CO_AUTHORED_BY=1
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  host="\[\e[01;35m\]\u@\h\[\e[0m\]"
-else
-  host="\[\e[01;30m\]\h\[\e[0m\]"
-fi
-
-# from https://stackoverflow.com/a/3499237/1533892
-_dir_chomp () {
-    local p=${1/#$HOME/\~} b s
-    s=${#p}
-    while [[ $p != "${p//\/}" ]]&&(($s>$2))
-    do
-        p=${p#/}
-        [[ $p =~ \.?. ]]
-        b=$b/${BASH_REMATCH[0]}
-        p=${p#*/}
-        ((s=${#b}+${#p}))
-    done
-    echo ${b/\/~/\~}${b+/}$p
-}
-
-export PS1='\[\e[01;30m\]\h\[\e[0m\] $( _dir_chomp "$(pwd)" 20 )\[\e[01;32m\]$(parse_git_branch)\[\e[01;30m\] \$\[\033[00m\] '
-
-# export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]==> $ \[\e[0m\]"
-
-# export PS1='$(eval "sps")$ '
-# sps() {
-#    echo "$PWD" | gsed -r 's|/([^/]{,2})[^/]*|/\1|g'
-# }
-
-alias rsink='rsync --archive --compress --verbose --progress --human-readable'
-alias rsinkd='rsink --delete'
-
-alias pg='ping www.google.com'
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
+# export DISABLE_UNTRACKED_FILES_DIRTY=false
+# export GIT_PS1_SHOWDIRTYSTATE=true
+# export GIT_PS1_SHOWCOLORHINTS=1
+# export PROMPT_COMMAND='__git_ps1 "\W" "\\\$ "'
+# export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
 
 ###############################################################################
 # AWS
@@ -121,35 +111,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 alias m='mix'
 
 ###############################################################################
-# Go
-###############################################################################
-
-export GOPATH=~/gocode
-export PATH=$PATH:$GOPATH/bin
-alias igo='gore'
-
-###############################################################################
-# Java
-###############################################################################
-
-eval "$(jenv init -)"
-export PATH="$HOME/.jenv/bin:$PATH"
-alias mvn='jenv exec mvn'
-
-###############################################################################
-# Qt
-###############################################################################
-
-export PATH="/usr/local/opt/qt/bin:$PATH"
-
-# For compilers to find this software you may need to set:
-export LDFLAGS='-L/usr/local/opt/qt/lib'
-export CPPFLAGS='-I/usr/local/opt/qt/include'
-
-# For pkg-config to find this software you may need to set:
-export PKG_CONFIG_PATH='/usr/local/opt/qt/lib/pkgconfig'
-
-###############################################################################
 # OSX
 ###############################################################################
 
@@ -161,20 +122,12 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   export EDITOR='code'
   alias vs=code
 
-  #   alias toatom='tmpin atom'
-  #
-  #   # requires `npm install --global tmpin`
-  #   function gda {
-  #     git diff $1 | toatom
-  #   }
-
   # For homebrew-based mysql install:
   alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
   alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
 
   alias camera='sudo killall VDCAssistant'
   # if that fails, add or try: sudo killall AppleCameraAssistant
-
 fi
 
 ###############################################################################
@@ -184,16 +137,14 @@ fi
 # NVM
 
 export NVM_DIR="$HOME/.nvm"
-if [ -s /usr/local/opt/nvm/nvm.sh ]
-then
-  . /usr/local/opt/nvm/nvm.sh
-fi;
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Yarn
 
-export PATH="$PATH:`yarn global bin`"
+sleep 0.1 && export PATH="$PATH:`yarn global bin`"
 
-alias yup='npm-check-updates --upgrade --upgradeAll && yarn && yarn upgrade'  # npm install -g npm-check-updates
+alias yup='npm-check-updates --upgrade && yarn && yarn upgrade'  # if this fails:  `npm upgrade -g npm-check-updates`
 
 alias y='yarn'
 alias yt='yarn test'
@@ -213,7 +164,7 @@ function yad {
 
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-alias nup='ncu --upgrade --upgradeAll && npm update && npm prune'  # npm i -g npm-check-updates
+# alias nup='ncu --upgrade && npm update && npm prune'  # if this fails:  `npm upgrade -g npm-check-updates`
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'
@@ -237,13 +188,8 @@ function nv {
 # Ruby
 ###############################################################################
 
-# RVM  -- WE NEED TO DO THIS LAST(ISH); GETS THINGY IF IT'S NOT ABLE TO CLAIM FIRST ENTRY IN PATH
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# citizen-scripts gem
-
-alias c='biq && be citizen'
+# rbenv:
+eval "$(rbenv init -)"
 
 # Bundler
 
@@ -277,12 +223,12 @@ alias rds='br db:seed'
 
 alias ss='spring stop'
 
-###############################################################################
-# asdf
-###############################################################################
+# ###############################################################################
+# # asdf
+# ###############################################################################
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+# . $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/completions/asdf.bash
 
 ###############################################################################
 # Other
@@ -295,15 +241,15 @@ alias pjson='underscore print --color'
 alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
+export PATH=/usr/local/opt/postgresql\@10/bin:$PATH
+
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
 #alias tomcat-stop='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
 
-if [ $OSTYPE == 'linux-gnu' ]; then
+if [ $OSTYPE = 'linux-gnu' ]; then
   export EDITOR=`which nano`
 fi
-
-alias si='[[ -s bin/shipit ]] && bin/shipit || yarn run shipit'
 
 # This echoes a bunch of color codes to the terminal to demonstrate
 # what's available. Each line is the color code of one forground color,

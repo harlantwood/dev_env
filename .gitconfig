@@ -15,6 +15,7 @@
 	anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'   # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
 	ba = branch -v -a
 	bd = for-each-ref --sort=committerdate refs/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	bh = !git bd | grep Harlan
 	br = branch -v
 	ca = commit --amend
 	can = commit --amend --no-edit
@@ -23,7 +24,9 @@
 	ci = commit
 	cl = config --list
 	co = checkout
-	cp = cherry-pick
+	dev = !git fetch && git co development && git up
+	cp = cherry-pick --strategy-option=patience
+	cpa = cherry-pick --abort
 	cpc = cherry-pick --continue
 	delrem = push origin --delete	# delete remote branch
 	df = diff --ignore-all-space --find-renames
@@ -32,28 +35,47 @@
 	ft = fetch
 	gp = gh-pages-push
 	l   = log --oneline --decorate --graph --tags --remotes --branches
+	l1  = log --oneline
 	ls  = log --oneline --decorate --graph --tags
 	lt  = log --oneline --decorate --graph --tags --remotes --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 	lst = log --oneline --decorate --graph --tags                      --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 	ld  = log --oneline --decorate --graph --tags --remotes --branches --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 	lsd = log --oneline --decorate --graph --tags                      --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 	lv = log -p
+	mas = !git fetch && git co master && git up
 	ms = merge --squash
 	pr = pull --rebase --autostash
 	ps = push --tags --set-upstream origin HEAD
-	psforce = push --force-with-lease origin HEAD
+	ph = push --tags --set-upstream origin HEAD
+	phf = push --tags --set-upstream --force-with-lease origin HEAD
 	ra = rebase --abort
 	rc = rebase --continue
-	rod = !git fetch && git rebase origin/develop
+	rod = !git fetch && git rebase origin/development
+	riod = rebase --interactive origin/development
+	riom = rebase --interactive origin/master
 	rom = !git fetch && git rebase origin/master
 	rh = reset --hard
 	ri = rebase -i
 	sa = stash apply
+	sa0 = stash apply stash@{0}
+	sa1 = stash apply stash@{1}
+	sa2 = stash apply stash@{2}
+	sa3 = stash apply stash@{3}
+	sa4 = stash apply stash@{4}
+	sa5 = stash apply stash@{5}
 	sp = stash pop
 	ss = stash save
+	s0 = stash show -v stash@{0}
+	s1 = stash show -v stash@{1}
+	s2 = stash show -v stash@{2}
+	s3 = stash show -v stash@{3}
+	s4 = stash show -v stash@{4}
+	s5 = stash show -v stash@{5}
 	st = status
 	today = log --pretty=format:"%s%b" --since="midnight" --reverse
 	up = pull --rebase --autostash	# requires git 2.9+
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
 	# up = !git fetch && git rebase --autostash FETCH_HEAD
 
@@ -62,6 +84,10 @@
 
 [color]
 	ui = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
 
 [color "branch"]
 	current = magenta reverse
@@ -83,13 +109,16 @@
 	mergeoptions = --no-edit
 
 [diff]
-    tool = default-difftool
+  tool = default-difftool
 
 [difftool "default-difftool"]
-    cmd = code --wait --new-window --diff $LOCAL $REMOTE
+  cmd = code --wait --new-window --diff $LOCAL $REMOTE
 
-[push]
-	default = matching
+[log]
+	follow = true
 
 [merge]
 	tool = opendiff
+
+[push]
+	default = simple

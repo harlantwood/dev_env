@@ -79,6 +79,14 @@
 	# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
 	# up = !git fetch && git rebase --autostash FETCH_HEAD
 
+	# git config --global color.branch auto
+  # git config --global color.diff auto
+  # git config --global color.interactive auto
+  # git config --global color.status auto
+  # git config --global push.default current
+  # git config --global pull.rebase true
+  # git config --global fetch.prune true
+
 [branch]
 	autosetupmerge = true
 
@@ -122,3 +130,8 @@
 
 [push]
 	default = simple
+[user]
+	email = code@harlantwood.net
+	name = Harlan T Wood
+[hub]
+	protocol = https

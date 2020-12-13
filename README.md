@@ -1,6 +1,6 @@
 # dev_env
 
-A collection of git, and bash utilities, prompts, etc.  Opinionated but simple and hackable.
+A collection of git, and bash utilities, prompts, etc. Opinionated but simple and hackable.
 
 ## 30 second install
 
@@ -26,3 +26,8 @@ To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps
     ln -s ~/.dev_env/keymap_idea_osx_custom.xml
+
+To set up Spectacle keymap:
+
+    cd Library/Application\ Support/Spectacle
+     ln -sf ~/.dev_env/keymap_spectacle.json Shortcuts.json

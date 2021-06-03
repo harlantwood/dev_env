@@ -25,10 +25,25 @@ test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 ###############################################################################
 
 # lots of history, available from all tabs and terminals:
-export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-export HISTSIZE=1000000                  # big big history
-export HISTFILESIZE=1000000              # big big history
-# shopt -s histappend                      # append to history, don't overwrite it
+export SAVEHIST=100000
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+export HISTFILE=~/.zhistory
+if $(command -v setopt); then
+  setopt SHARE_HISTORY
+  setopt HIST_IGNORE_DUPS
+  setopt INC_APPEND_HISTORY
+  #setopt EXTENDED_HISTORY
+fi
+
+alias h='history -50'
+
+# eg "hg multipass" to see all commands containing 'multipass'
+function hg {
+  history 1 | grep $1
+}
+
+
 
 # fixes https://github.com/asdf-vm/asdf/issues/279#issue-290858023
 # and possibly other issues:
@@ -47,7 +62,6 @@ alias pd='pushd'
 alias pop='popd'
 
 alias a=alias
-alias h='history | tail -50'
 
 alias hk=heroku
 
@@ -56,9 +70,12 @@ function ga {
   alias | grep "$1" | grep -v grep
 }
 
+alias ebp='$EDITOR ~/.zshrc'
 alias ezsh='$EDITOR ~/.zshrc'
+alias ebpe='$EDITOR ~/.dev_env'
 alias ezshe='$EDITOR ~/.dev_env'
 alias szsh='. ~/.zshrc'
+alias sbp='. ~/.zshrc'
 
 # remove all .svn dirs in the current dir and subdirs
 alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
@@ -121,7 +138,8 @@ alias rsinkd='rsink --delete'
 
 # Powerline Go:
 # go get -u github.com/justjanne/powerline-go
-PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
+# PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
+PL_MODULES="time,ssh,cwd,git,jobs,perms,exit,root"
 function powerline_precmd() {
   PS1="$(powerline-go -modules ${PL_MODULES} -numeric-exit-codes -error $? -shell zsh)"
 }
@@ -136,6 +154,8 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ]; then
   install_powerline_precmd
 fi
+
+alias tbar='sudo pkill TouchBarServer'  # to get esc key back ;)
 
 ###############################################################################
 # AWS
@@ -212,7 +232,7 @@ function yad {
 
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-# alias nup='ncu --upgrade && npm update && npm prune'  # if this fails:  `npm upgrade -g npm-check-updates`
+alias nup='ncu --upgrade && npm update && npm prune'  # if this fails:  `npm upgrade -g npm-check-updates`
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'
@@ -237,7 +257,7 @@ function nv {
 ###############################################################################
 
 # rbenv:
-# eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 
 # Bundler
 
@@ -286,17 +306,19 @@ alias ss='spring stop'
 ###############################################################################
 
 . ~/.nix-profile/etc/profile.d/nix.sh
-alias nixs="nix-shell --command '. ~/.zshrc; return' "
-alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
-alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"
+alias nixs="nix-shell --run $SHELL --command '. ~/.dev_env/bash_extensions; return' --argstr flavor happDev"
+# alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
+# alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
+# alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"
 alias killnix="ps aux | grep nix | awk '{print $2}' | xargs kill -9"
-alias nixclean="nix-store --gc && "
+alias nixclean="nix-store --gc && nix-collect-garbage -d"
 
 ###############################################################################
 # Rust
 ###############################################################################
 
 export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"
 
 ###############################################################################
 # Python / ML
@@ -313,7 +335,7 @@ alias pjson='underscore print --color'
 alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
-export PATH=/usr/local/opt/postgresql\@10/bin:$PATH
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'

@@ -1,4 +1,3 @@
-# Designed to be used on both dev and production servers
 # Read and understand all of this that you use!
 #
 # As the license says:
@@ -9,6 +8,15 @@
 # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+###############################################################################
+# Imports
+###############################################################################
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+cd $SCRIPT_DIR
+
+. ./shell_ext_any_box.sh
 
 ###############################################################################
 # Go
@@ -29,7 +37,7 @@ export SAVEHIST=100000
 export HISTSIZE=100000
 export HISTFILESIZE=100000
 export HISTFILE=~/.zhistory
-if $(command -v setopt); then
+if $(command -v setopt >/dev/null); then
   setopt SHARE_HISTORY
   setopt HIST_IGNORE_DUPS
   setopt INC_APPEND_HISTORY
@@ -43,8 +51,6 @@ function hg {
   history 1 | grep $1
 }
 
-
-
 # fixes https://github.com/asdf-vm/asdf/issues/279#issue-290858023
 # and possibly other issues:
 # touch $HOME/.bash_sessions_disable
@@ -54,21 +60,7 @@ ulimit -n 1024
 # securely erase files before removing:
 alias rms='rm -P'
 
-alias ll='ls -lFh'
-alias lla='ls -lFah'
-alias llt='ls -lhFart'
-
-alias pd='pushd'
-alias pop='popd'
-
-alias a=alias
-
 alias hk=heroku
-
-# eg "ag rake" to see all rake-related aliases
-function ga {
-  alias | grep "$1" | grep -v grep
-}
 
 alias ebp='$EDITOR ~/.zshrc'
 alias ezsh='$EDITOR ~/.zshrc'
@@ -78,55 +70,12 @@ alias szsh='. ~/.zshrc'
 alias sbp='. ~/.zshrc'
 
 # remove all .svn dirs in the current dir and subdirs
-alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
+# alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
 alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 
-alias rsink='rsync --archive --compress --verbose --progress --human-readable'
-alias rsinkd='rsink --delete'
-
-alias pg='ping www.google.com'
-
-# eg "psg mysql" to see all mysql processes
-function psg {
-  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
-}
-
-# eg "port 3000" to see what is running there
-function port {
-  lsof -i -n -P | grep TCP | grep "$1"
-}
-
-# Display folder and it's content as a tree
-function tree {
-  find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-}
-
-# GIT
-
-alias g=git
-alias wip='git commit -m WIP'
-
-export GIT_DUET_CO_AUTHORED_BY=1
-# parse_git_branch() {
-#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-# }
-
-# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-#   host="\[\e[01;35m\]\u@\h\[\e[0m\]"
-# else
-#   host="\[\e[01;30m\]\h\[\e[0m\]"
-# fi
-
-if [ -n "$IN_NIX_SHELL" ]; then
-  subshell="==NIX"
-else
-  subshell=""
-fi
-
-# export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]${subshell}==> $ \[\e[0m\]"
-
-alias rsink='rsync --archive --compress --verbose --progress --human-readable'
-alias rsinkd='rsink --delete'
+###############################################################################
+# Prompt
+###############################################################################
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 # [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
@@ -199,58 +148,12 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 fi
 
 ###############################################################################
-# Node.js
-###############################################################################
-
 # NVM
+###############################################################################
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Yarn
-
-# sleep 0.1 && export PATH="$PATH:`yarn global bin`"
-
-alias yup='npm-check-updates --upgrade && yarn && yarn upgrade'  # if this fails:  `npm upgrade -g npm-check-updates`
-
-alias y='yarn'
-alias yt='yarn test'
-alias yr='yarn run'
-
-function yi {
-  yarn add $*
-}
-function ya {
-  yarn add $*
-}
-function yad {
-  yarn add $* --dev
-}
-
-# NPM
-
-alias nbump='npm version patch'
-alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-alias nup='ncu --upgrade && npm update && npm prune'  # if this fails:  `npm upgrade -g npm-check-updates`
-alias n='npm'
-alias nt='npm test'
-alias nr='npm run'
-alias links='ll node_modules | grep \\-\>'
-
-function ni  {
-  npm install            $1 && npm prune
-}
-function nis {
-  npm install --save     $1 && npm prune
-}
-function nid {
-  npm install --save-dev $1 && npm prune
-}
-
-function nv {
-  npm show $1 versions
-}
 
 ###############################################################################
 # Ruby
@@ -306,7 +209,7 @@ alias ss='spring stop'
 ###############################################################################
 
 . ~/.nix-profile/etc/profile.d/nix.sh
-alias nixs="nix-shell --run $SHELL --command '. ~/.dev_env/bash_extensions; return' --argstr flavor happDev"
+alias nixs='nix-shell --command ". ~/.dev_env/shell_ext_any_box.sh; return" --argstr flavor happDev'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
 # alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
 # alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"
@@ -340,10 +243,6 @@ export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
 #alias tomcat-stop='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'
-
-if [ $OSTYPE = 'linux-gnu' ]; then
-  export EDITOR=`which nano`
-fi
 
 # This echoes a bunch of color codes to the terminal to demonstrate
 # what's available. Each line is the color code of one forground color,

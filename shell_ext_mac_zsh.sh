@@ -13,10 +13,10 @@
 # Imports
 ###############################################################################
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd $SCRIPT_DIR
+# SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)  # works in bash
+SCRIPT_DIR=${0:a:h}  # zsh only
 
-. ./shell_ext_any_box.sh
+. ${SCRIPT_DIR}/shell_ext_any_box.sh
 
 ###############################################################################
 # Go
@@ -86,6 +86,7 @@ alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 # export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
 
 # Powerline Go:
+# brew install golang
 # go get -u github.com/justjanne/powerline-go
 # PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
 PL_MODULES="time,ssh,cwd,git,jobs,perms,exit,root"
@@ -208,7 +209,7 @@ alias ss='spring stop'
 # Holochain & nix
 ###############################################################################
 
-. ~/.nix-profile/etc/profile.d/nix.sh
+[ -f ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
 alias nixs='nix-shell --command ". ~/.dev_env/shell_ext_any_box.sh; return" --argstr flavor happDev'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
 # alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
@@ -221,7 +222,7 @@ alias nixclean="nix-store --gc && nix-collect-garbage -d"
 ###############################################################################
 
 export PATH="$HOME/.cargo/bin:$PATH"
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 ###############################################################################
 # Python / ML

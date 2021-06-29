@@ -14,13 +14,18 @@ In home dir:
 
 in your ~/.bash_profile or similar:
 
-    source ~/.dev_env/bash_extensions
+    . ~/.dev_env/shell_ext_mac_zsh.sh
 
 To set up `.gitconfig` and `.gitignore`:
 
     cd ~
     ln -s .dev_env/.gitconfig
     ln -s .dev_env/.gitignore
+
+To set up vscode settings:
+
+    cd "~/Library/Application Support/Code/User"
+    ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
 
 To set up IntelliJ keymap:
 

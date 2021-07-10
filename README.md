@@ -24,7 +24,7 @@ To set up `.gitconfig` and `.gitignore`:
 
 To set up vscode settings:
 
-    cd "~/Library/Application Support/Code/User"
+    cd ~/Library/Application\ Support/Code/User
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
 
 To set up IntelliJ keymap:

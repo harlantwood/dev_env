@@ -25,8 +25,8 @@
   },
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.fontFamily": "Inconsolata, Hack, Fira Code, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": false,
   "editor.fontSize": 14,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
@@ -60,12 +60,13 @@
   "window.openFoldersInNewWindow": "on",
   "window.restoreWindows": "all",
   "window.zoomLevel": 1,
-  "workbench.activityBar.visible": false,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
   "[diff]": {},
   "terminal.integrated.scrollback": 100000,
-  "workbench.colorTheme": "Night Owl Light"
+  "workbench.colorTheme": "Night Owl Light",
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.activityBar.visible": false
 }

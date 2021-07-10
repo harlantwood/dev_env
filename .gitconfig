@@ -129,12 +129,18 @@
 	tool = opendiff
 
 [push]
-	default = simple
+	default = current
+
+[pull]
+	rebase = true
+
 [user]
 	email = code@harlantwood.net
 	name = Harlan T Wood
+
 [hub]
 	protocol = https
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

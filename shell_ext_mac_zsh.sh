@@ -14,7 +14,7 @@
 ###############################################################################
 
 # SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)  # works in bash
-SCRIPT_DIR=${0:a:h}  # zsh only
+SCRIPT_DIR=${0:a:h} # zsh only
 
 . ${SCRIPT_DIR}/shell_ext_any_box.sh
 
@@ -105,7 +105,7 @@ if [ "$TERM" != "linux" ]; then
   install_powerline_precmd
 fi
 
-alias tbar='sudo pkill TouchBarServer'  # to get esc key back ;)
+alias tbar='sudo pkill TouchBarServer' # to get esc key back ;)
 
 ###############################################################################
 # AWS
@@ -141,20 +141,26 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   alias vs=code
 
   # For homebrew-based mysql install:
-  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop'  #  ; killall mysqld'
+  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop' #  ; killall mysqld'
   alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
 
-  alias camera='sudo killall VDCAssistant'
-  # if that fails, add or try: sudo killall AppleCameraAssistant
+  alias camera='sudo killall VDCAssistant || sudo killall AppleCameraAssistant'
+
+  alias brewfix='sudo chmod -R g+w /usr/local/lib/pkgconfig /usr/local/share /usr/local/Homebrew /usr/local/var/homebrew /usr/local/var/log /usr/local/Caskroom /Library/Ruby/Gems'
+  sudo chmod -R g+w /usr/local/lib/pkgconfig /usr/local/share /usr/local/Homebrew /usr/local/var/homebrew /Library/Ruby/Gems # fix any issues on login
 fi
+
+### GOOD BEFORE
 
 ###############################################################################
 # NVM
 ###############################################################################
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+### GOOD AFTER
 
 ###############################################################################
 # Ruby
@@ -170,7 +176,7 @@ alias bi='bundle install'
 alias biq='bi --quiet'
 alias biw='bi --without=development:test'
 alias bid='biw --deployment'
-alias bis='gemrat --no-version'  # implements missing `bundle install --save` -- requires you first `gem install gemrat`
+alias bis='gemrat --no-version' # implements missing `bundle install --save` -- requires you first `gem install gemrat`
 
 # Foreman
 

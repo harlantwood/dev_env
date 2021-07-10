@@ -31,8 +31,3 @@ To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps
     ln -s ~/.dev_env/keymap_idea_osx_custom.xml
-
-To set up Spectacle keymap:
-
-    cd Library/Application\ Support/Spectacle
-     ln -sf ~/.dev_env/keymap_spectacle.json Shortcuts.json

@@ -26,6 +26,7 @@ To set up vscode settings:
 
     cd ~/Library/Application\ Support/Code/User
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
+    ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/keybindings.json
 
 To set up IntelliJ keymap:
 

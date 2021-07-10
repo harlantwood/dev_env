@@ -68,5 +68,9 @@
   "terminal.integrated.scrollback": 100000,
   "workbench.colorTheme": "Night Owl Light",
   "workbench.editor.untitled.hint": "hidden",
-  "workbench.activityBar.visible": false
+  "workbench.activityBar.visible": false,
+  "tabnine.experimentalAutoImports": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

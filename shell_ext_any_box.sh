@@ -50,37 +50,37 @@ if [ $OSTYPE = 'linux-gnu' ]; then
 fi
 
 # GIT
-
 alias g=git
 alias wip='git commit -m WIP'
 
-###############################################################################
-# Prompt
-###############################################################################
-
-if [ $OSTYPE = 'linux-gnu' ]; then
-  export GIT_DUET_CO_AUTHORED_BY=1
-  parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-  }
-
-  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    host="\[\e[01;35m\]\u@\h\[\e[0m\]"
-  else
-    host="\[\e[01;30m\]\h\[\e[0m\]"
-  fi
-
-  if [ -n "$IN_NIX_SHELL" ]; then
-    subshell="==NIX"
-  else
-    subshell=""
-  fi
-
-  export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]${subshell}==> $ \[\e[0m\]"
-fi
-
+# rsync
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
+
+# ###############################################################################
+# # Prompt
+# ###############################################################################
+
+# if [ $OSTYPE = 'linux-gnu' ]; then
+#   export GIT_DUET_CO_AUTHORED_BY=1
+#   parse_git_branch() {
+#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+#   }
+
+#   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#     host="\[\e[01;35m\]\u@\h\[\e[0m\]"
+#   else
+#     host="\[\e[01;30m\]\h\[\e[0m\]"
+#   fi
+
+#   if [ -n "$IN_NIX_SHELL" ]; then
+#     subshell="==NIX"
+#   else
+#     subshell=""
+#   fi
+
+#   export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]${subshell}==> $ \[\e[0m\]"
+# fi
 
 ###############################################################################
 # Yarn

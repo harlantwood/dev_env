@@ -21,7 +21,7 @@
     "ruby": false,
     "fasterer": false,
     "debride": false,
-    "ruby-lint": false,
+    "ruby-lint": false
   },
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -72,5 +72,9 @@
   "tabnine.experimentalAutoImports": true,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.editor.showTabs": false
 }

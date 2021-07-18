@@ -32,5 +32,9 @@
     "key": "ctrl+\\",
     "command": "workbench.files.action.showActiveFileInExplorer",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+p",
+    "command": "workbench.action.toggleMaximizedPanel"
   }
 ]

@@ -25,9 +25,6 @@
   },
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.fontFamily": "Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": false,
-  "editor.fontSize": 14,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnSaveTimeout": 1500,
@@ -76,5 +73,15 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.editor.showTabs": false
+  "workbench.editor.showTabs": true,
+  "editor.fontFamily": "MonoLisa, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 14,
+  // "editor.lineHeight": 0,
+  "terminal.integrated.fontSize": 12,
+  // "terminal.integrated.fontFamily": "MonoLisa",
+  // "terminal.integrated.fontWeight": "normal",
+  // "terminal.integrated.fontWeightBold": "bold",
+  // "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.localEchoStyle": "#c0c"
 }

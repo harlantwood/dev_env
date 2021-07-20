@@ -46,7 +46,7 @@ function tree {
 }
 
 if [ $OSTYPE = 'linux-gnu' ]; then
-  export EDITOR=`which nano`
+  export EDITOR=$(which nano)
 fi
 
 # GIT
@@ -56,6 +56,15 @@ alias wip='git commit -m WIP'
 # rsync
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
+
+alias hk=heroku
+
+alias ebp='$EDITOR ~/.zshrc'
+alias ezsh='$EDITOR ~/.zshrc'
+alias ebpe='$EDITOR ~/.dev_env'
+alias ezshe='$EDITOR ~/.dev_env'
+alias szsh='. ~/.zshrc'
+alias sbp='. ~/.zshrc'
 
 # ###############################################################################
 # # Prompt
@@ -86,7 +95,7 @@ alias rsinkd='rsink --delete'
 # Yarn
 ###############################################################################
 
-alias yup='npm-check-updates --upgrade && yarn && yarn upgrade'  # if this fails:  `npm upgrade -g npm-check-updates`
+alias yup='npm-check-updates --upgrade && yarn && yarn upgrade' # if this fails:  `npm upgrade -g npm-check-updates`
 
 alias y='yarn'
 alias yt='yarn test'
@@ -108,17 +117,17 @@ function yad {
 
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-alias nup='ncu --upgrade && npm update && npm prune'  # if this fails:  `npm upgrade -g npm-check-updates`
+alias nup='ncu --upgrade && npm update && npm prune' # if this fails:  `npm upgrade -g npm-check-updates`
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'
 alias links='ll node_modules | grep \\-\>'
 
-function ni  {
-  npm install            $1 && npm prune
+function ni {
+  npm install $1 && npm prune
 }
 function nis {
-  npm install --save     $1 && npm prune
+  npm install --save $1 && npm prune
 }
 function nid {
   npm install --save-dev $1 && npm prune
@@ -127,3 +136,39 @@ function nid {
 function nv {
   npm show $1 versions
 }
+
+###############################################################################
+# Ruby
+###############################################################################
+
+# Bundler
+
+alias be='bundle exec'
+alias bi='bundle install'
+alias biq='bi --quiet'
+alias biw='bi --without=development:test'
+alias bid='biw --deployment'
+alias bis='gemrat --no-version' # implements missing `bundle install --save` -- requires you first `gem install gemrat`
+
+# # Foreman
+
+# alias frun='be foreman run'
+# alias fcon='be foreman run irb'
+# alias fser='biq && be rerun foreman start'
+
+# Rails
+
+alias sp='bin/rspec --color'
+alias sn='sp --format documentation'
+alias sf='sp --require fuubar --format Fuubar'
+
+alias r='bin/rails'
+alias rs='biq && be foreman run "rails server"'
+
+alias br='bundle exec rake'
+alias rdr='br db:rebuild'
+alias rdm='be rake db:migrate'
+alias rtp='br db:test:prepare'
+alias rds='br db:seed'
+
+alias ss='spring stop'

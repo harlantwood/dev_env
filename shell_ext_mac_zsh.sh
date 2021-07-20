@@ -60,15 +60,6 @@ ulimit -n 1024
 # securely erase files before removing:
 alias rms='rm -P'
 
-alias hk=heroku
-
-alias ebp='$EDITOR ~/.zshrc'
-alias ezsh='$EDITOR ~/.zshrc'
-alias ebpe='$EDITOR ~/.dev_env'
-alias ezshe='$EDITOR ~/.dev_env'
-alias szsh='. ~/.zshrc'
-alias sbp='. ~/.zshrc'
-
 # remove all .svn dirs in the current dir and subdirs
 # alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
 alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
@@ -150,8 +141,6 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   sudo chmod -R g+w /usr/local/lib/pkgconfig /usr/local/share /usr/local/Homebrew /usr/local/var/homebrew /Library/Ruby/Gems # fix any issues on login
 fi
 
-### GOOD BEFORE
-
 ###############################################################################
 # NVM
 ###############################################################################
@@ -160,46 +149,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-### GOOD AFTER
-
 ###############################################################################
 # Ruby
 ###############################################################################
 
 # rbenv:
 eval "$(rbenv init -)"
-
-# Bundler
-
-alias be='bundle exec'
-alias bi='bundle install'
-alias biq='bi --quiet'
-alias biw='bi --without=development:test'
-alias bid='biw --deployment'
-alias bis='gemrat --no-version' # implements missing `bundle install --save` -- requires you first `gem install gemrat`
-
-# Foreman
-
-alias frun='be foreman run'
-alias fcon='be foreman run irb'
-alias fser='biq && be rerun foreman start'
-
-# Rails
-
-alias sp='bin/rspec --color'
-alias sn='sp --format documentation'
-alias sf='sp --require fuubar --format Fuubar'
-
-alias r='bin/rails'
-alias rs='biq && be foreman run "rails server"'
-
-alias br='bundle exec rake'
-alias rdr='br db:rebuild'
-alias rdm='be rake db:migrate'
-alias rtp='br db:test:prepare'
-alias rds='br db:seed'
-
-alias ss='spring stop'
 
 # ###############################################################################
 # # asdf
@@ -240,10 +195,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 alias hs='http-server -c-1'
 
-alias pjson='underscore print --color'
+# alias pjson='underscore print --color'
 
-alias pgstart='pg_ctl -D /usr/local/var/postgres start'
-alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
+# alias pgstart='pg_ctl -D /usr/local/var/postgres start'
+# alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
 

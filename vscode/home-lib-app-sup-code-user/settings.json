@@ -83,5 +83,12 @@
   // "terminal.integrated.fontWeight": "normal",
   // "terminal.integrated.fontWeightBold": "bold",
   // "terminal.integrated.lineHeight": 1,
-  "terminal.integrated.localEchoStyle": "#c0c"
+  "terminal.integrated.localEchoStyle": "#c0c",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "redhat.telemetry.enabled": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

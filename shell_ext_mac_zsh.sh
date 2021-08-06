@@ -137,7 +137,7 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   alias camera='sudo killall VDCAssistant || sudo killall AppleCameraAssistant'
 
-  BREWFIX_FILES="
+  BREWFIX_FILES="\
     /Library/Ruby/Gems \
     /usr/local/Caskroom \
     /usr/local/Cellar \
@@ -147,7 +147,8 @@ if [ $OSTYPE != 'linux-gnu' ]; then
     /usr/local/var/homebrew \
     /usr/local/var/log \
     "
-  BREWFIX="sudo chown -R $(whoami) ${BREWFIX_FILES} && sudo chmod -R g+w ${BREWFIX_FILES}"
+  BREWFIX="sudo chown -R $(whoami) ${BREWFIX_FILES}"
+  # BREWFIX="sudo chown -R $(whoami) ${BREWFIX_FILES} && sudo chmod -R g+w ${BREWFIX_FILES}"
   alias brewfix="${BREWFIX}"
   # eval $BREWFIX # fix on login # takes some time
 fi

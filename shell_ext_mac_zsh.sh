@@ -211,7 +211,14 @@ alias hs='http-server -c-1'
 # alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 # alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
+
+# For compilers to find postgresql@12 you may need to set:
+#   export LDFLAGS="-L/usr/local/opt/postgresql@12/lib"
+#   export CPPFLAGS="-I/usr/local/opt/postgresql@12/include"
+
+# For pkg-config to find postgresql@12 you may need to set:
+#   export PKG_CONFIG_PATH="/usr/local/opt/postgresql@12/lib/pkgconfig"
 
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'

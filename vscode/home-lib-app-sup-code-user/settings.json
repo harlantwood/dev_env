@@ -4,13 +4,21 @@
   },
   "cSpell.userWords": [
     "Alderaan",
-    "Cryptographically",
-    "Heroku",
     "architecting",
     "blockchain",
+    "Cryptographically",
+    "funder",
+    "harlantwood",
+    "Heroku",
+    "HOLOMATRIX",
+    "OCTOKIT",
     "orderbook",
+    "perspect",
     "sharded",
-    "sharex"
+    "sharex",
+    "sveltejs",
+    "vism",
+    "wikinodes"
   ],
   "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
@@ -56,14 +64,12 @@
   "window.newWindowDimensions": "maximized",
   "window.openFoldersInNewWindow": "on",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 1,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "newUntitledFile",
   "[diff]": {},
   "terminal.integrated.scrollback": 100000,
-  "workbench.colorTheme": "Night Owl Light",
   "workbench.editor.untitled.hint": "hidden",
   "workbench.activityBar.visible": false,
   "tabnine.experimentalAutoImports": true,
@@ -71,9 +77,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "workbench.editor.showTabs": true,
   "editor.fontFamily": "MonoLisa, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
@@ -89,6 +94,19 @@
   },
   "redhat.telemetry.enabled": false,
   "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Night Owl Light",
+  "svelte.enable-ts-plugin": true,
+  "window.zoomLevel": 1,
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.defaultLocation": "editor",
+  "terminal.integrated.defaultProfile.osx": "zsh"
 }

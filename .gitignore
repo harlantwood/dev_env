@@ -1,5 +1,6 @@
 .DS_Store
 .elixir_ls/
+.metals/
 .swo
 .tags
 .tags[0-9]*

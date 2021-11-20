@@ -41,6 +41,10 @@
   "editor.minimap.enabled": false,
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
+
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+
   "elixirLS.fetchDeps": false,
   "eslint.packageManager": "yarn",
   "explorer.confirmDragAndDrop": false,
@@ -83,7 +87,7 @@
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
   // "editor.lineHeight": 0,
-  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontSize": 14,
   // "terminal.integrated.fontFamily": "MonoLisa",
   // "terminal.integrated.fontWeight": "normal",
   // "terminal.integrated.fontWeightBold": "bold",
@@ -100,13 +104,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "workbench.colorTheme": "Night Owl Light",
   "svelte.enable-ts-plugin": true,
-  "window.zoomLevel": 1,
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.defaultLocation": "editor",
-  "terminal.integrated.defaultProfile.osx": "zsh"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "window.zoomLevel": 1,
+  "workbench.panel.defaultLocation": "right"
+
 }

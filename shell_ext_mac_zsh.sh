@@ -183,7 +183,8 @@ eval "$(rbenv init -)"
 ###############################################################################
 
 [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
-alias nixs='nix-shell --command ". ~/.dev_env/shell_ext_any_box.sh; return" --argstr flavor happDev'
+alias nixs='nix-shell         --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
+alias nixsp='nix-shell --pure --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
 # alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
 # alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"

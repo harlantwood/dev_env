@@ -171,4 +171,6 @@ alias rdm='be rake db:migrate'
 alias rtp='br db:test:prepare'
 alias rds='br db:seed'
 
+alias work='br jobs:work'
+
 alias ss='spring stop'

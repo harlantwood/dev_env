@@ -1,6 +1,9 @@
 {
   "[ruby]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "ruby.rubocopAutocorrect": false
+    }
   },
   "[markdown]": {
     "editor.formatOnSave": true

@@ -26,8 +26,8 @@ fi
 # HOMEBREW INSTALLATION LOCATION
 if [[ $(uname -m) == 'arm64' ]]; then
     source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64)
-  else       
-    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # Intel (x86_64)          
+  else
+    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # Intel (x86_64)
 fi
 
 
@@ -52,11 +52,11 @@ SCRIPT_DIR=${0:a:h} # zsh only
 # zsh
 ###############################################################################
 
-if [[ $(uname -m) == 'arm64' ]]; 
+if [[ $(uname -m) == 'arm64' ]];
   then
     export PATH="/opt/homebrew/bin:$PATH" # Apple M1 (arm64)
-  else       
-    export PATH="/usr/local/bin:$PATH" # Intel (x86_64)          
+  else
+    export PATH="/usr/local/bin:$PATH" # Intel (x86_64)
 fi
 
 
@@ -156,13 +156,7 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   BREWFIX_FILES="\
     /Library/Ruby/Gems \
-    /usr/local/Caskroom \
-    /usr/local/Cellar \
-    /usr/local/Homebrew \
-    /usr/local/lib/pkgconfig \
-    /usr/local/share \
-    /usr/local/var/homebrew \
-    /usr/local/var/log \
+    /usr/local/* \
     "
   BREWFIX="sudo chown -R $(whoami) ${BREWFIX_FILES}"
   # BREWFIX="sudo chown -R $(whoami) ${BREWFIX_FILES} && sudo chmod -R g+w ${BREWFIX_FILES}"
@@ -184,7 +178,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # rbenv:
 
-eval "$(rbenv init -)"                #bash    
+eval "$(rbenv init -)"                #bash
 export PATH="$HOME/.rbenv/bin:$PATH"  #zsh
 eval "$(rbenv init - zsh)"            #zsh
 

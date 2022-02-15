@@ -41,10 +41,8 @@
   "editor.minimap.enabled": false,
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
-
   "editor.guides.bracketPairs": true,
   "editor.bracketPairColorization.enabled": true,
-
   "elixirLS.fetchDeps": false,
   "eslint.packageManager": "yarn",
   "explorer.confirmDragAndDrop": false,
@@ -78,7 +76,7 @@
   "workbench.activityBar.visible": false,
   "tabnine.experimentalAutoImports": true,
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -101,7 +99,7 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[svelte]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "svelte.svelte-vscode"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
@@ -112,7 +110,15 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.defaultProfile.osx": "zsh",
-  "window.zoomLevel": 1,
-  "workbench.panel.defaultLocation": "right"
-
+  "workbench.panel.defaultLocation": "right",
+  "plantuml.server": "https://www.plantuml.com/plantuml",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": false
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": 2
 }

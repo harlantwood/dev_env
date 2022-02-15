@@ -25,7 +25,8 @@ function ga {
   alias | grep "$1" | grep -v grep
 }
 
-alias rsink='rsync --archive --compress --verbose --progress --human-readable'
+alias rsink='rsync --archive --verbose --progress --human-readable'
+#alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
 
 alias pg='ping www.google.com'

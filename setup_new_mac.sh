@@ -22,6 +22,9 @@ brew install --cask flycut
 brew install --cask rectangle
 
 brew install zsh zsh-completions
+# MAYBE:
+sudo echo "$(which zsh)" >> /etc/shells
+chsh -s $(which zsh)
 
 brew install golang
 export GOPATH="${HOME}/.go"
@@ -29,7 +32,7 @@ export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 mkdir -p "${GOPATH}"
 mkdir -p "${GOPATH}/src/github.com"
-go get -u github.com/justjanne/powerline-go
+go install github.com/justjanne/powerline-go@latest
 
 brew install yarn
 
@@ -65,4 +68,4 @@ brew install md5sha1sum
 
 # you could check if a more recent version exists here:
 # https://github.com/nvm-sh/nvm/tags
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash

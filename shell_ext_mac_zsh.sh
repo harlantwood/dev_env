@@ -19,14 +19,21 @@ SCRIPT_DIR=${0:a:h} # zsh only
 . ${SCRIPT_DIR}/shell_ext_any_box.sh
 
 ###############################################################################
-# Go
+# zsh
 ###############################################################################
 
-export GOPATH="${HOME}/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-test -d "${GOPATH}" || mkdir "${GOPATH}"
-test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+export PATH="/opt/homebrew/bin:$PATH"
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# ###############################################################################
+# # Go
+# ###############################################################################
+
+# export GOPATH="${HOME}/.go"
+# export GOROOT="$(brew --prefix golang)/libexec"
+# export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+# test -d "${GOPATH}" || mkdir "${GOPATH}"
+# test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
 ###############################################################################
 # Basics
@@ -64,6 +71,8 @@ alias rms='rm -P'
 # alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
 alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 
+alias tbar='sudo killall TouchBarServer' # to get esc key back ;)
+
 ###############################################################################
 # Prompt
 ###############################################################################
@@ -76,27 +85,25 @@ alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 # export PROMPT_COMMAND='__git_ps1 "\W" "\\\$ "'
 # export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
 
-# Powerline Go:
-# brew install golang
-# go get -u github.com/justjanne/powerline-go
-# PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
-PL_MODULES="time,ssh,cwd,git,jobs,perms,exit,root"
-function powerline_precmd() {
-  PS1="$(powerline-go -modules ${PL_MODULES} -numeric-exit-codes -error $? -shell zsh)"
-}
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-if [ "$TERM" != "linux" ]; then
-  install_powerline_precmd
-fi
-
-alias tbar='sudo pkill TouchBarServer' # to get esc key back ;)
+# # Powerline Go:
+# # brew install golang
+# # go get -u github.com/justjanne/powerline-go
+# # PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
+# PL_MODULES="time,ssh,cwd,git,jobs,perms,exit,root"
+# function powerline_precmd() {
+#   PS1="$(powerline-go -modules ${PL_MODULES} -numeric-exit-codes -error $? -shell zsh)"
+# }
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+# if [ "$TERM" != "linux" ]; then
+#   install_powerline_precmd
+# fi
 
 ###############################################################################
 # AWS
@@ -182,7 +189,24 @@ eval "$(rbenv init -)"
 # Holochain & nix
 ###############################################################################
 
+# single user nix:
 [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
+
+# multi user nix:
+# from https://github.com/NixOS/nix/issues/5298#issuecomment-928083070
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  # if PATH does *not* contain `~/.nix-profile/bin`
+  if [ -n "${PATH##*.nix-profile/bin*}" ]; then
+
+    # If this flag is set, `nix-daemon.sh` returns early
+    # https://github.com/NixOS/nix/issues/5298
+    unset __ETC_PROFILE_NIX_SOURCED
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  fi
+fi
+
+export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs
+
 alias nixs='nix-shell         --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 alias nixsp='nix-shell --pure --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"

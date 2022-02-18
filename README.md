@@ -28,6 +28,14 @@ To set up vscode settings:
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/keybindings.json
 
+To back up vscode extensions:
+
+    code --list-extensions >> vscode/extensions.txt
+
+And to reinstall them elsewhere:
+
+    cat vscode/extensions.txt | xargs -n 1 code --install-extension
+
 To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps

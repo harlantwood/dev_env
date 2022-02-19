@@ -10,6 +10,30 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# ###############################################################################
+# # Prompt
+# ###############################################################################
+
+if [ -n $IN_NIX_SHELL ]; then
+  parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+  }
+
+  # if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  #   host="\[\e[01;35m\]\u@\h\[\e[0m\]"
+  # else
+  #   host="\[\e[01;30m\]\h\[\e[0m\]"
+  # fi
+
+  # if [ -n "$IN_NIX_SHELL" ]; then
+  #   subshell="==NIX"
+  # else
+  #   subshell=""
+  # fi
+
+  export PS1="\[\e[1;36m\]nix => \[\e[0m\]\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\] $ \[\e[0m\]"
+fi
+
 ###############################################################################
 # Basics
 ###############################################################################
@@ -53,6 +77,7 @@ fi
 # GIT
 alias g=git
 alias wip='git commit -m WIP'
+export GIT_DUET_CO_AUTHORED_BY=1
 
 # rsync
 alias rsink='rsync --archive --compress --verbose --progress --human-readable'
@@ -66,31 +91,6 @@ alias ebpe='$EDITOR ~/.dev_env'
 alias ezshe='$EDITOR ~/.dev_env'
 alias szsh='. ~/.zshrc'
 alias sbp='. ~/.zshrc'
-
-# ###############################################################################
-# # Prompt
-# ###############################################################################
-
-# if [ $OSTYPE = 'linux-gnu' ]; then
-#   export GIT_DUET_CO_AUTHORED_BY=1
-#   parse_git_branch() {
-#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
-#   }
-
-#   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-#     host="\[\e[01;35m\]\u@\h\[\e[0m\]"
-#   else
-#     host="\[\e[01;30m\]\h\[\e[0m\]"
-#   fi
-
-#   if [ -n "$IN_NIX_SHELL" ]; then
-#     subshell="==NIX"
-#   else
-#     subshell=""
-#   fi
-
-#   export PS1="${host} \w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\]\n\[\e[1;36m\]${subshell}==> $ \[\e[0m\]"
-# fi
 
 ###############################################################################
 # Yarn

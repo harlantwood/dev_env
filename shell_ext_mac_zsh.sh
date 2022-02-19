@@ -10,6 +10,30 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ###############################################################################
+# Prompt
+###############################################################################
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+# [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
+# export DISABLE_UNTRACKED_FILES_DIRTY=false
+# export GIT_PS1_SHOWDIRTYSTATE=true
+# export GIT_PS1_SHOWCOLORHINTS=1
+# export PROMPT_COMMAND='__git_ps1 "\W" "\\\$ "'
+# export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
+
+###############################################################################
 # Imports
 ###############################################################################
 
@@ -23,7 +47,6 @@ SCRIPT_DIR=${0:a:h} # zsh only
 ###############################################################################
 
 export PATH="/opt/homebrew/bin:$PATH"
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # ###############################################################################
 # # Go
@@ -74,38 +97,6 @@ alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 alias tbar='sudo killall TouchBarServer' # to get esc key back ;)
 
 ###############################################################################
-# Prompt
-###############################################################################
-
-# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-# [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
-# export DISABLE_UNTRACKED_FILES_DIRTY=false
-# export GIT_PS1_SHOWDIRTYSTATE=true
-# export GIT_PS1_SHOWCOLORHINTS=1
-# export PROMPT_COMMAND='__git_ps1 "\W" "\\\$ "'
-# export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
-
-# # Powerline Go:
-# # brew install golang
-# # go get -u github.com/justjanne/powerline-go
-# # PL_MODULES="time,host,ssh,cwd,git,jobs,perms,exit,root"
-# PL_MODULES="time,ssh,cwd,git,jobs,perms,exit,root"
-# function powerline_precmd() {
-#   PS1="$(powerline-go -modules ${PL_MODULES} -numeric-exit-codes -error $? -shell zsh)"
-# }
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-# if [ "$TERM" != "linux" ]; then
-#   install_powerline_precmd
-# fi
-
-###############################################################################
 # AWS
 ###############################################################################
 
@@ -143,6 +134,13 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
 
   alias camera='sudo killall VDCAssistant || sudo killall AppleCameraAssistant'
+
+  if type brew &>/dev/null; then
+      FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+      autoload -Uz compinit
+      compinit
+  fi
 
   BREWFIX_FILES="\
     /Library/Ruby/Gems \
@@ -205,10 +203,10 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   fi
 fi
 
-export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs
+export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs, for now
 
-alias nixs='nix-shell         --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
-alias nixsp='nix-shell --pure --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
+alias nixs='nix-shell         --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
+alias nixsp='nix-shell --pure --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
 # alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
 # alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"

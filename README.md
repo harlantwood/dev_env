@@ -2,19 +2,37 @@
 
 A collection of git, and bash utilities, prompts, etc. Opinionated but simple and hackable.
 
-## 30 second install
+You can install it anywhere; in the instructions below **just change ~/.dev_env to any directory you wish.**
 
-You can install it anywhere; in the instructions below just change ~/.dev_env to any directory you wish.
-
-In home dir:
+In home dir [cd ~] or Directory of your choosing:
 
     git clone https://github.com/harlantwood/dev_env.git .dev_env
     # or:
     git clone git@github.com:harlantwood/dev_env.git .dev_env
 
-in your ~/.bash_profile or similar:
+---
+
+## _10 minute batch install for core-nexus repo dependencies (Primarily using Brew)_
+
+From your ~/.dev_env directory, Run the setup_new_mac.sh:
+
+    bash setup_new_mac.sh
+
+---
+
+## _30 second install for bash extensions, git config, idea keymap_
+
+Copy the following into your ~/.bash_profile or similar:
 
     . ~/.dev_env/shell_ext_mac_zsh.sh
+
+If needed, Copy the following into your ~/.zshrc or similar:
+
+```console
+if [ -f ~/.bash_profile ]; then
+    . ~/.bash_profile;
+fi
+```
 
 To set up `.gitconfig` and `.gitignore`:
 
@@ -29,8 +47,10 @@ To set up vscode settings:
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/keybindings.json
 
 To back up vscode extensions:
-
-    code --list-extensions >> vscode/extensions.txt
+```console
+cd ~/.dev_env
+code --list-extensions >> vscode/extensions.txt
+```
 
 And to reinstall them elsewhere:
 

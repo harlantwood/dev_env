@@ -23,7 +23,13 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# HOMEBREW INSTALLATION LOCATION
+if [[ $(uname -m) == 'arm64' ]]; then
+    source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64)
+  else       
+    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # Intel (x86_64)          
+fi
+
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 # [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
@@ -46,7 +52,13 @@ SCRIPT_DIR=${0:a:h} # zsh only
 # zsh
 ###############################################################################
 
-export PATH="/opt/homebrew/bin:$PATH"
+if [[ $(uname -m) == 'arm64' ]]; 
+  then
+    export PATH="/opt/homebrew/bin:$PATH" # Apple M1 (arm64)
+  else       
+    export PATH="/usr/local/bin:$PATH" # Intel (x86_64)          
+fi
+
 
 # ###############################################################################
 # # Go
@@ -171,7 +183,10 @@ export NVM_DIR="$HOME/.nvm"
 ###############################################################################
 
 # rbenv:
-eval "$(rbenv init -)"
+
+eval "$(rbenv init -)"                #bash    
+export PATH="$HOME/.rbenv/bin:$PATH"  #zsh
+eval "$(rbenv init - zsh)"            #zsh
 
 # ###############################################################################
 # # asdf

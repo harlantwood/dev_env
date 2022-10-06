@@ -140,10 +140,6 @@ default = current
 [pull]
 rebase = true
 
-[user]
-email = code@harlantwood.net
-name = Harlan T Wood
-
 [hub]
 protocol = https
 

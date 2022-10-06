@@ -12,7 +12,7 @@ In home dir [cd ~] or Directory of your choosing:
 
 ---
 
-## _10 minute batch install for core-nexus repo dependencies (Primarily using Brew)_
+## _10 minute batch install for common dependencies (Primarily using Brew)_
 
 From your ~/.dev_env directory, Run the setup_new_mac.sh:
 

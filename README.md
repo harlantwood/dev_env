@@ -22,18 +22,9 @@ From your ~/.dev_env directory, Run the setup_new_mac.sh:
 
 ## _30 second install for bash extensions, git config, idea keymap_
 
-Copy the following into your ~/.bash_profile or similar:
+Copy the following into your ~/.zshrc (or ~/.bash_profile or similar):
 
     . ~/.dev_env/shell_ext_mac_zsh.sh
-
-If needed, Copy the following into your ~/.zshrc or similar:
-
-```console
-if [ -f ~/.bash_profile ]; then
-    . ~/.bash_profile;
-fi
-```
-
 To set up `.gitconfig` and `.gitignore`:
 
     cd ~

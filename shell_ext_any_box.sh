@@ -31,7 +31,7 @@ if [ -n $IN_NIX_SHELL ]; then
   #   subshell=""
   # fi
 
-  export PS1="\[\e[1;36m\]nix => \[\e[0m\]\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\] $ \[\e[0m\]"
+  export PS1="\[\e[1;36m\]NIX \[\e[0m\]\w\[\e[01;32m\]\$(parse_git_branch)\[\e[0m\] $ \[\e[0m\]"
 fi
 
 ###############################################################################
@@ -44,14 +44,12 @@ alias llt='ls -lhFart'
 
 alias a=alias
 
+alias br='bin/run'
+
 # eg "ga rake" to see all rake-related aliases
 function ga {
   alias | grep "$1" | grep -v grep
 }
-
-alias rsink='rsync --archive --verbose --progress --human-readable'
-#alias rsink='rsync --archive --compress --verbose --progress --human-readable'
-alias rsinkd='rsink --delete'
 
 alias pg='ping www.google.com'
 
@@ -80,7 +78,8 @@ alias wip='git commit -m WIP'
 export GIT_DUET_CO_AUTHORED_BY=1
 
 # rsync
-alias rsink='rsync --archive --compress --verbose --progress --human-readable'
+alias rsink='rsync --archive --verbose --progress --human-readable'
+#alias rsink='rsync --archive --compress --verbose --progress --human-readable'
 alias rsinkd='rsink --delete'
 
 alias hk=heroku
@@ -122,6 +121,7 @@ alias nup='ncu --upgrade && npm update && npm prune' # if this fails:  `npm upgr
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'
+alias ne='npm exec'
 alias links='ll node_modules | grep \\-\>'
 
 function ni {
@@ -166,7 +166,6 @@ alias sf='sp --require fuubar --format Fuubar'
 alias r='bin/rails'
 alias rs='biq && be foreman run "rails server"'
 
-alias br='bundle exec rake'
 alias rdr='br db:rebuild'
 alias rdm='be rake db:migrate'
 alias rtp='br db:test:prepare'

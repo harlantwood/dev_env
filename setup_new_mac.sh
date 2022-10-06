@@ -55,8 +55,8 @@ brew install --cask multipass
 brew install cmake
 brew install --cask chromedriver
 brew install lnav
-brew install postgresql@12
-brew services start postgresql@12
+brew install postgresql@13
+brew services start postgresql@13
 brew install memcached
 brew services start memcached
 brew install openvpn
@@ -65,6 +65,9 @@ brew install shellcheck
 brew install nginx
 brew services start nginx
 brew install md5sha1sum
+
+brew install --cask docker  # docker compose too
+brew install jq
 
 # you could check if a more recent version exists here:
 # https://github.com/nvm-sh/nvm/tags

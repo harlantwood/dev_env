@@ -2,6 +2,9 @@
   "[ruby]": {
     "editor.formatOnSave": true
   },
+  "[python]": {
+    "editor.formatOnSave": false
+  },
   "cSpell.userWords": [
     "Alderaan",
     "architecting",
@@ -34,7 +37,7 @@
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.formatOnPaste": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnSaveTimeout": 1500,
   "editor.formatOnType": false,
   "editor.insertSpaces": true,
@@ -76,10 +79,10 @@
   "workbench.activityBar.visible": false,
   "tabnine.experimentalAutoImports": true,
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.fontFamily": "MonoLisa, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
@@ -92,19 +95,18 @@
   // "terminal.integrated.lineHeight": 1,
   "terminal.integrated.localEchoStyle": "#c0c",
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "redhat.telemetry.enabled": false,
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Night Owl Light",
   "svelte.enable-ts-plugin": true,
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.copyOnSelection": true,
@@ -117,9 +119,14 @@
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": false
+    "markdown": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "window.zoomLevel": 1,
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+  "plantuml.java": "",
+  "plantuml.render": "PlantUMLServer",
+  "workbench.editor.showTabs": true,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "workbench.colorTheme": "Night Owl",
+  "window.zoomLevel": 2
 }

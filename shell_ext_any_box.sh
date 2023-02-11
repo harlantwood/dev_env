@@ -95,7 +95,7 @@ alias sbp='. ~/.zshrc'
 # Yarn
 ###############################################################################
 
-alias yup='npm-check-updates --upgrade && yarn && yarn upgrade' # if this fails:  `npm upgrade -g npm-check-updates`
+alias yup='yarn upgrade --force --latest'
 
 alias y='yarn'
 alias yt='yarn test'

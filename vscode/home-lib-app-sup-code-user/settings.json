@@ -2,8 +2,16 @@
   "[ruby]": {
     "editor.formatOnSave": true
   },
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
   "[python]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.userWords": [
     "Alderaan",
@@ -81,14 +89,11 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.fontFamily": "MonoLisa, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
-  "editor.fontSize": 14,
+  "editor.fontSize": 13,
   // "editor.lineHeight": 0,
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontSize": 11,
   // "terminal.integrated.fontFamily": "MonoLisa",
   // "terminal.integrated.fontWeight": "normal",
   // "terminal.integrated.fontWeightBold": "bold",
@@ -128,5 +133,8 @@
   "workbench.editor.showTabs": true,
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "workbench.colorTheme": "Night Owl",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "window.zoomLevel": 2
 }

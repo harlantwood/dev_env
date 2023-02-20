@@ -13,6 +13,11 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[svelte]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
   "cSpell.userWords": [
     "Alderaan",
     "architecting",
@@ -104,9 +109,6 @@
   },
   "redhat.telemetry.enabled": false,
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {

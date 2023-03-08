@@ -8,6 +8,9 @@
   "[markdown]": {
     "editor.formatOnSave": true
   },
+  "[rust]": {
+    "editor.formatOnSave": true
+  },
   "[python]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true

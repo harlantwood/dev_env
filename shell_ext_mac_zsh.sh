@@ -23,12 +23,12 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# HOMEBREW INSTALLATION LOCATION
-if [[ $(uname -m) == 'arm64' ]]; then
-    source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64)
-  else
-    source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # Intel (x86_64)
-fi
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64)
+# if [[ $(uname -m) == 'arm64' ]]; then
+#     source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64)
+#   else
+#     source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme # Intel (x86_64)
+# fi
 
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"

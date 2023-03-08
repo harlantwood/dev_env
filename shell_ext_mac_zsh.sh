@@ -196,23 +196,23 @@ eval "$(rbenv init - zsh)"            #zsh
 # Holochain & nix
 ###############################################################################
 
-# single user nix:
-[ -f ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
+# # single user nix:
+# [ -f ~/.nix-profile/etc/profile.d/nix.sh ] && . ~/.nix-profile/etc/profile.d/nix.sh
 
-# multi user nix:
-# from https://github.com/NixOS/nix/issues/5298#issuecomment-928083070
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  # if PATH does *not* contain `~/.nix-profile/bin`
-  if [ -n "${PATH##*.nix-profile/bin*}" ]; then
+# # multi user nix:
+# # from https://github.com/NixOS/nix/issues/5298#issuecomment-928083070
+# if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+#   # if PATH does *not* contain `~/.nix-profile/bin`
+#   if [ -n "${PATH##*.nix-profile/bin*}" ]; then
 
-    # If this flag is set, `nix-daemon.sh` returns early
-    # https://github.com/NixOS/nix/issues/5298
-    unset __ETC_PROFILE_NIX_SOURCED
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  fi
-fi
+#     # If this flag is set, `nix-daemon.sh` returns early
+#     # https://github.com/NixOS/nix/issues/5298
+#     unset __ETC_PROFILE_NIX_SOURCED
+#     . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+#   fi
+# fi
 
-export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs, for now
+# export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs, for now
 
 alias nixs='nix-shell         --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 alias nixsp='nix-shell --pure --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'

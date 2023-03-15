@@ -52,7 +52,8 @@ rbenv init
 brew install --cask github # github desktop
 
 brew install telnet
-brew install --cask multipass
+# brew install --cask multipass
+brew install redis
 
 brew install cmake
 brew install --cask chromedriver

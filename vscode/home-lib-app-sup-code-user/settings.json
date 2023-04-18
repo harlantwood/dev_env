@@ -102,9 +102,9 @@
   },
   "editor.fontFamily": "MonoLisa, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   // "editor.lineHeight": 0,
-  "terminal.integrated.fontSize": 11,
+  "terminal.integrated.fontSize": 14,
   // "terminal.integrated.fontFamily": "MonoLisa",
   // "terminal.integrated.fontWeight": "normal",
   // "terminal.integrated.fontWeightBold": "bold",
@@ -132,7 +132,8 @@
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": true
+    "markdown": true,
+    "rust": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "security.workspace.trust.untrustedFiles": "open",
@@ -144,5 +145,10 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "window.zoomLevel": 2
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "extensions.ignoreRecommendations": true,
+  "window.zoomLevel": 1
 }

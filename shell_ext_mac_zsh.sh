@@ -141,9 +141,9 @@ if [ $OSTYPE != 'linux-gnu' ]; then
   export EDITOR='code'
   alias vs=code
 
-  # For homebrew-based mysql install:
-  alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop' #  ; killall mysqld'
-  alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
+  # # For homebrew-based mysql install:
+  # alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop' #  ; killall mysqld'
+  # alias mystart='/usr/local/opt/mysql56/bin/mysql.server start'
 
   alias camera='sudo killall VDCAssistant || sudo killall AppleCameraAssistant'
 
@@ -214,11 +214,13 @@ eval "$(rbenv init - zsh)"            #zsh
 
 # export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs, for now
 
+alias nixd='nix develop'
 alias nixs='nix-shell         --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 alias nixsp='nix-shell --pure --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
 # alias nixh="nix-shell --command '. ~/.zshrc; return' https://github.com/holochain/holonix/archive/v0.0.65.tar.gz"
 # alias love="nix-shell --command '. ~/.zshrc; return' https://holochain.love"
+# alias love="nix develop github:holochain/holochain#holonix"
 alias killnix="ps aux | grep nix | awk '{print $2}' | xargs kill -9"
 alias nixclean="nix-store --gc && nix-collect-garbage -d"
 
@@ -246,9 +248,9 @@ alias hs='http-server -c-1'
 
 export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
 
-# For compilers to find postgresql@13 you may need to set:
-export LDFLAGS="-L/usr/local/opt/postgresql@13/lib"
-export CPPFLAGS="-I/usr/local/opt/postgresql@13/include"
+# # For compilers to find postgresql@13 you may need to set:
+# export LDFLAGS="-L/usr/local/opt/postgresql@13/lib"
+# export CPPFLAGS="-I/usr/local/opt/postgresql@13/include"
 
 # For pkg-config to find postgresql@13 you may need to set:
 #   export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@13/lib/pkgconfig"

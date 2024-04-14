@@ -36,5 +36,19 @@
   {
     "key": "ctrl+shift+alt+p",
     "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "ctrl+alt+cmd+r",
+    "command": "workbench.action.closeEditorsToTheRight"
+  },
+  {
+    "key": "shift+cmd+\\",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+  {
+    "key": "alt+\\",
+    "command": "-editor.action.inlineSuggest.trigger",
+    "when": "editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
   }
 ]

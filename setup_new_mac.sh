@@ -6,11 +6,17 @@ xcode-select --install
 
 which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+# for Python that works with fastai:
+brew install python
+# then follow https://pnote.eu/notes/fastai-pytorch-mac-setup/
+
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
 
 brew tap homebrew/cask
+]
+brew install gh  # github cli
 
 brew install --cask iterm2
 
@@ -49,8 +55,6 @@ heroku autocomplete --refresh-cache
 brew install rbenv
 rbenv init
 
-brew install --cask github # github desktop
-
 brew install telnet
 # brew install --cask multipass
 brew install redis
@@ -58,8 +62,8 @@ brew install redis
 brew install cmake
 brew install --cask chromedriver
 brew install lnav
-brew install postgresql@13
-brew services start postgresql@13
+brew install postgresql@15
+brew services start postgresql@15
 brew install memcached
 brew services start memcached
 brew install openvpn
@@ -75,3 +79,9 @@ brew install jq
 # you could check if a more recent version exists here:
 # https://github.com/nvm-sh/nvm/tags
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# slim font:
+brew tap homebrew/cask-fonts
+brew install font-iosevka
+
+brew install openjdk

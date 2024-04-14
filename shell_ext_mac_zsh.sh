@@ -135,6 +135,8 @@ alias m='mix'
 
 if [ $OSTYPE != 'linux-gnu' ]; then
 
+  export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
+
   export PATH="$(echo $HOME)/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
 
   export MANPATH=$MANPATH:/opt/local/man
@@ -235,6 +237,19 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Python / ML
 ###############################################################################
 
+export PATH=$PATH:/opt/homebrew/opt/python@3.11/libexec/bin
+
+# for venv:
+if [[ -f .env/bin/activate ]]; then
+  source .env/bin/activate
+fi
+
+###############################################################################
+# Java
+###############################################################################
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 ###############################################################################
 # Other
 ###############################################################################
@@ -246,14 +261,14 @@ alias hs='http-server -c-1'
 # alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 # alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
-export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
-# # For compilers to find postgresql@13 you may need to set:
-# export LDFLAGS="-L/usr/local/opt/postgresql@13/lib"
-# export CPPFLAGS="-I/usr/local/opt/postgresql@13/include"
+# For compilers to find postgresql@15 you may need to set:
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@15/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@15/include"
 
-# For pkg-config to find postgresql@13 you may need to set:
-#   export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@13/lib/pkgconfig"
+# For pkg-config to find postgresql@15 you may need to set:
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
 
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'

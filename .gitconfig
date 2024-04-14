@@ -14,6 +14,7 @@
 a = !git config --list | grep alias
 #anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -' # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
 aa = add --all
+au = add --intent-to-add
 ap = add --patch
 ba = branch -v -a
 bd = for-each-ref --sort=committerdate refs/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'

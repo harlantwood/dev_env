@@ -10,6 +10,10 @@ which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homeb
 brew install python
 # then follow https://pnote.eu/notes/fastai-pytorch-mac-setup/
 
+# AI:
+# better: https://docs.anaconda.com/miniconda/
+# brew install --cask anaconda
+
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
@@ -26,6 +30,8 @@ code_cmd="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 
 brew install --cask flycut
 brew install --cask rectangle
+
+brew install watch
 
 brew install zsh zsh-completions
 # MAYBE:
@@ -85,3 +91,16 @@ brew tap homebrew/cask-fonts
 brew install font-iosevka
 
 brew install openjdk
+
+# Set up passwordless sudo:
+# sudo visudo
+# %admin ALL = (ALL) NOPASSWD: ALL
+
+# bun (JS)
+brew install oven-sh/bun/bun
+
+brew install supabase/tap/supabase
+
+# java
+brew install java
+brew install maven

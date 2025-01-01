@@ -25,6 +25,10 @@
     "command": "workbench.action.quickOpen"
   },
   {
+    "key": "alt+cmd+k",
+    "command": "workbench.action.terminal.clear",
+  },
+  {
     "key": "cmd+escape",
     "command": "workbench.action.closePanel"
   },

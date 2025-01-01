@@ -35,7 +35,7 @@ if [ -n $IN_NIX_SHELL ]; then
 fi
 
 ###############################################################################
-# Basics
+# General
 ###############################################################################
 
 alias ll='ls -lFh'
@@ -91,6 +91,12 @@ alias ezshe='$EDITOR ~/.dev_env'
 alias szsh='. ~/.zshrc'
 alias sbp='. ~/.zshrc'
 alias mdkir='mkdir'
+
+# aider
+
+alias aidson='aider --map-tokens 2048 --model claude-3-5-sonnet-20240620 --weak-model claude-3-5-sonnet-20240620 --anthropic-api-key="${ANTHROPIC_API_KEY_AIDER}"'
+alias aid4o='aider --map-tokens 2048 --model="gpt-4o" --weak-model="gpt-4o" --openai-api-key="${OPENAI_API_KEY_AIDER}"'
+alias aid40=aid4o
 
 ###############################################################################
 # Yarn

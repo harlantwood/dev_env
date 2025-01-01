@@ -13,3 +13,4 @@ npm-debug.log
 vscode/home-lib-app-sup-code-user/globalStorage
 vscode/home-lib-app-sup-code-user/workspaceStorage
 yarn-error.log
+.aider*

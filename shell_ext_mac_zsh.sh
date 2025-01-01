@@ -40,6 +40,12 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme # Apple M1 (arm64
 # export PROMPT_COMMAND='__git_ps1 "\w" "\[\e[0m\]\[\e[1;36m\] $ \[\e[0m\]"'
 
 ###############################################################################
+# direnv
+###############################################################################
+
+# eval "$(direnv hook zsh)"
+
+###############################################################################
 # Imports
 ###############################################################################
 
@@ -55,6 +61,7 @@ SCRIPT_DIR=${0:a:h} # zsh only
 if [[ $(uname -m) == 'arm64' ]];
   then
     export PATH="/opt/homebrew/bin:$PATH" # Apple M1 (arm64)
+    export PATH="$PATH:/usr/local/texlive/2024basic/bin/universal-darwin" # Latex
   else
     export PATH="/usr/local/bin:$PATH" # Intel (x86_64)
 fi
@@ -106,7 +113,7 @@ alias rms='rm -P'
 # alias rmsvn='find . -name ".svn" -exec rm -rf "{}" \;'
 alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 
-alias tbar='sudo killall TouchBarServer' # to get esc key back ;)
+alias sound='sudo killall coreaudiod' # fix sound on mac
 
 ###############################################################################
 # AWS
@@ -174,6 +181,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+if [ -f .nvmrc ]; then
+  nvm use > /dev/null   # like direnv, but cheap and trouble free.  Not on `cd` though, only on new shell in that dir.
+fi
+
 ###############################################################################
 # Ruby
 ###############################################################################
@@ -216,7 +227,7 @@ eval "$(rbenv init - zsh)"            #zsh
 
 # export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1  # for M1 macs, for now
 
-alias nixd='nix develop'
+alias nixd='nix --extra-experimental-features nix-command --extra-experimental-features flakes develop'
 alias nixs='nix-shell         --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 alias nixsp='nix-shell --pure --command "zsh" --argstr flavor happDev --command ". ~/.dev_env/shell_ext_any_box.sh; return"'
 # alias nixs="nix-shell --run $SHELL --command '. ~/.zshrc; return' --argstr flavor happDev"
@@ -238,6 +249,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 ###############################################################################
 
 export PATH=$PATH:/opt/homebrew/opt/python@3.11/libexec/bin
+export PATH=$PATH:$HOME/miniconda3/condabin
 
 # for venv:
 if [[ -f .env/bin/activate ]]; then

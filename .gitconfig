@@ -41,8 +41,8 @@ gp = gh-pages-push
 l = log --oneline --decorate --graph --tags --remotes --branches
 l1 = log --oneline
 ls = log --oneline --decorate --graph --tags
-lt = log --oneline --decorate --graph --tags --remotes --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
-lst = log --oneline --decorate --graph --tags --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
+lt = log --oneline --decorate --graph --tags --remotes --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=iso
+lst = log --oneline --decorate --2 --tags --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 ld = log --oneline --decorate --graph --tags --remotes --branches --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 lsd = log --oneline --decorate --graph --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 # lv = log -p ':(exclude)yarn.lock' ':(exclude)package-lock.json'
@@ -120,8 +120,9 @@ new = green bold
 autocrlf = false
 editor = code --wait
 excludesfile = ~/.gitignore
-whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+pager = less -x1,3
 mergeoptions = --no-edit
+whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [diff]
 tool = default-difftool
@@ -134,6 +135,7 @@ follow = true
 
 [merge]
 tool = opendiff
+	conflictstyle = diff3
 
 [push]
 default = current

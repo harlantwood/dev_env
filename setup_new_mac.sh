@@ -19,7 +19,7 @@ defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
 
 brew tap homebrew/cask
-]
+
 brew install gh  # github cli
 
 brew install --cask iterm2

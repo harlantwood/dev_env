@@ -31,6 +31,11 @@ To set up `.gitconfig` and `.gitignore`:
     ln -s .dev_env/.gitconfig
     ln -s .dev_env/.gitignore
 
+To set up p10k prompt:
+
+    cd ~
+    ln -s .dev_env/.p10k.zsh
+
 To set up vscode settings:
 
     cd ~/Library/Application\ Support/Code/User

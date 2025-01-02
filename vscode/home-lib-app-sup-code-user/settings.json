@@ -2,7 +2,7 @@
   "[ruby]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "ruby.rubocopAutocorrect": false
+      "ruby.rubocopAutocorrect": "never"
     },
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
@@ -103,7 +103,6 @@
   "[diff]": {},
   "terminal.integrated.scrollback": 100000,
   "workbench.editor.untitled.hint": "hidden",
-  "workbench.activityBar.visible": false,
   "tabnine.experimentalAutoImports": true,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -179,7 +178,7 @@
   "security.workspace.trust.untrustedFiles": "open",
   "plantuml.java": "",
   "plantuml.render": "PlantUMLServer",
-  "workbench.editor.showTabs": true,
+  "workbench.editor.showTabs": "multiple",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "workbench.colorTheme": "Night Owl",
   "[typescriptreact]": {
@@ -199,5 +198,6 @@
   },
   "window.zoomLevel": 2,
   // "python.defaultInterpreterPath": "/Users/knight/miniconda3/envs/web-ui/bin/python",
-  "codeium.enableCodeLens": false
+  "codeium.enableCodeLens": false,
+  "workbench.activityBar.location": "hidden"
 }

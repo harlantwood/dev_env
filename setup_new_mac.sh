@@ -18,7 +18,7 @@ brew install python
 defaults write com.apple.Finder AppleShowAllFiles true
 killall Finder
 
-brew tap homebrew/cask
+brew install powerlevel10k
 
 brew install gh  # github cli
 
@@ -68,8 +68,8 @@ brew install redis
 brew install cmake
 brew install --cask chromedriver
 brew install lnav
-brew install postgresql@15
-brew services start postgresql@15
+brew install postgresql@16
+brew services start postgresql@16
 brew install memcached
 brew services start memcached
 brew install openvpn
@@ -85,10 +85,6 @@ brew install jq
 # you could check if a more recent version exists here:
 # https://github.com/nvm-sh/nvm/tags
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-# slim font:
-brew tap homebrew/cask-fonts
-brew install font-iosevka
 
 brew install openjdk
 

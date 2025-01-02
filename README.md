@@ -12,19 +12,12 @@ In home dir [cd ~] or Directory of your choosing:
 
 ---
 
-## _10 minute batch install for common dependencies (Primarily using Brew)_
-
-From your ~/.dev_env directory, Run the setup_new_mac.sh:
-
-    bash setup_new_mac.sh
-
----
-
 ## _30 second install for bash extensions, git config, idea keymap_
 
 Copy the following into your ~/.zshrc (or ~/.bash_profile or similar):
 
     . ~/.dev_env/shell_ext_mac_zsh.sh
+
 To set up `.gitconfig` and `.gitignore`:
 
     cd ~
@@ -37,8 +30,10 @@ To set up p10k prompt:
     ln -s .dev_env/.p10k.zsh
 
 To set up vscode settings:
+To set up vscode or cursor settings:
 
-    cd ~/Library/Application\ Support/Code/User
+    cd ~/Library/Application\ Support/Code/User  # OR if Cursor:
+    cd ~/Library/Application\ Support/Cursor/User
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/keybindings.json
 

@@ -1,66 +1,104 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[ruby]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "ruby.rubocopAutocorrect": "never"
-    },
-    "editor.defaultFormatter": "misogi.ruby-rubocop"
+      "editor.formatOnSave": false,
+      "editor.codeActionsOnSave": {
+          "ruby.rubocopAutocorrect": "never"
+      },
+      "editor.defaultFormatter": "Shopify.ruby-lsp"
   },
   "[erb]": {
-    "editor.defaultFormatter": "elia.erb-formatter",
-    "editor.formatOnSave": true
+      "editor.defaultFormatter": "elia.erb-formatter",
+      "editor.formatOnSave": true
   },
   "files.associations": {
-    "*.html.erb": "erb"
+      "*.html.erb": "erb"
   },
   "[markdown]": {
-    "editor.formatOnSave": true
+      "editor.formatOnSave": false
   },
   "[rust]": {
-    "editor.formatOnSave": true
+      "editor.formatOnSave": true
   },
   "[python]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.defaultFormatter": "ms-python.python"
+      "editor.formatOnSave": true,
+      "editor.formatOnType": true,
+      "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "[javascript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      //     "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+
   "[typescript]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      // "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[svelte]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "svelte.svelte-vscode"
-    // "editor.defaultFormatter": "svelte.svelte-vscode"
+      "editor.formatOnSave": false,
+      "editor.defaultFormatter": "svelte.svelte-vscode"
   },
+  "[jsonc]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+  },
+
+  "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   "cSpell.userWords": [
-    "Alderaan",
-    "architecting",
-    "blockchain",
-    "Cryptographically",
-    "funder",
-    "harlantwood",
-    "Heroku",
-    "HOLOMATRIX",
-    "OCTOKIT",
-    "orderbook",
-    "perspect",
-    "sharded",
-    "sharex",
-    "sveltejs",
-    "vism",
-    "wikinodes"
+      "Alderaan",
+      "architecting",
+      "blockchain",
+      "Cryptographically",
+      "Datetimepicker",
+      "funder",
+      "harlantwood",
+      "Heroku",
+      "HOLOMATRIX",
+      "Ideyalabs",
+      "Mercola",
+      "meridium",
+      "nlevel",
+      "OCTOKIT",
+      "orderbook",
+      "perspect",
+      "Prasad",
+      "sharded",
+      "sharex",
+      "sveltejs",
+      "Vapi",
+      "vism",
+      "wikinodes"
   ],
   "gitlens.advanced.messages": {
-    "suppressShowKeyBindingsNotice": true
+      "suppressShowKeyBindingsNotice": true
   },
   "ruby.lint": {
-    "reek": false,
-    "rubocop": true,
-    "ruby": false,
-    "fasterer": false,
-    "debride": false,
-    "ruby-lint": false
+      "reek": false,
+      "rubocop": true,
+      "ruby": false,
+      "fasterer": false,
+      "debride": false,
+      "ruby-lint": false
   },
   "breadcrumbs.enabled": true,
   "diffEditor.ignoreTrimWhitespace": false,
@@ -78,7 +116,11 @@
   "eslint.packageManager": "yarn",
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
+
   "files.autoSave": "onFocusChange",
+  // "files.autoSave": "afterDelay",
+  // "files.autoSaveDelay": 4000,
+
   "files.hotExit": "onExitAndWindowClose",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -102,61 +144,44 @@
   "workbench.startupEditor": "newUntitledFile",
   "[diff]": {},
   "terminal.integrated.scrollback": 100000,
-  "workbench.editor.untitled.hint": "hidden",
   "tabnine.experimentalAutoImports": true,
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.fontFamily": "MonoLisa, iosevka, Fira Code, Hack, Inconsolata, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 13,
-  // "editor.lineHeight": 0,
   "terminal.integrated.fontSize": 13,
-  "terminal.integrated.fontFamily": "iosevka, MonoLisa",
-  // "terminal.integrated.fontWeight": "normal",
-  // "terminal.integrated.fontWeightBold": "bold",
-  // "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.fontFamily": "MonoLisa, iosevka",
   "terminal.integrated.localEchoStyle": "#c0c",
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "redhat.telemetry.enabled": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
   "yaml.customTags": [
-    "!And",
-    "!And sequence",
-    "!If",
-    "!If sequence",
-    "!Not",
-    "!Not sequence",
-    "!Equals",
-    "!Equals sequence",
-    "!Or",
-    "!Or sequence",
-    "!FindInMap",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Join",
-    "!Join sequence",
-    "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!Sub sequence",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!ImportValue sequence",
-    "!Select",
-    "!Select sequence",
-    "!Split",
-    "!Split sequence"
+      "!And",
+      "!And sequence",
+      "!If",
+      "!If sequence",
+      "!Not",
+      "!Not sequence",
+      "!Equals",
+      "!Equals sequence",
+      "!Or",
+      "!Or sequence",
+      "!FindInMap",
+      "!FindInMap sequence",
+      "!Base64",
+      "!Join",
+      "!Join sequence",
+      "!Cidr",
+      "!Ref",
+      "!Sub",
+      "!Sub sequence",
+      "!GetAtt",
+      "!GetAZs",
+      "!ImportValue",
+      "!ImportValue sequence",
+      "!Select",
+      "!Select sequence",
+      "!Split",
+      "!Split sequence"
   ],
   "json.schemas": [],
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "svelte.enable-ts-plugin": true,
   "terminal.integrated.inheritEnv": false,
   "terminal.integrated.copyOnSelection": true,
@@ -166,13 +191,13 @@
   "plantuml.server": "https://www.plantuml.com/plantuml",
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false,
-    "yaml": true,
-    "rust": true,
-    "erb": true
+      "*": true,
+      "plaintext": false,
+      "markdown": true,
+      "scminput": false,
+      "yaml": true,
+      "rust": true,
+      "erb": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "security.workspace.trust.untrustedFiles": "open",
@@ -181,23 +206,30 @@
   "workbench.editor.showTabs": "multiple",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "workbench.colorTheme": "Night Owl",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.unicodeHighlight.invisibleCharacters": false,
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "extensions.ignoreRecommendations": true,
-  "remote.SSH.defaultExtensions": ["gitpod.gitpod-remote-ssh"],
+  "remote.SSH.defaultExtensions": [
+      "gitpod.gitpod-remote-ssh"
+  ],
   "git.openRepositoryInParentFolders": "always",
   "erb-formatter.commandPath": "/Users/knight/.rbenv/shims/erb-format",
   "files.saveConflictResolution": "overwriteFileOnDisk",
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "window.zoomLevel": 2,
-  // "python.defaultInterpreterPath": "/Users/knight/miniconda3/envs/web-ui/bin/python",
+  "window.zoomLevel": 1,
+  "python.defaultInterpreterPath": "/Users/knight/miniconda3/envs/web-ui/bin/python",
   "codeium.enableCodeLens": false,
-  "workbench.activityBar.location": "hidden"
+  "workbench.editor.empty.hint": "hidden",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "editor.renderWhitespace": "none",
+  "workbench.activityBar.location": "hidden",
+  "workbench.editor.customLabels.enabled": true,
+  "workbench.editor.customLabels.patterns": {
+      "**/+page.svelte": "${dirname(2)}/${dirname(1)}/${dirname} (svelte)",
+      "**/+page.server.ts": "${dirname(2)}/${dirname(1)}/${dirname} (server.ts)"
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "cursor.cpp.disabledLanguages": [
+      "plaintext",
+      "scminput"
+  ]
 }

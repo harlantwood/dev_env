@@ -59,6 +59,7 @@ brew install heroku
 heroku autocomplete --refresh-cache
 
 brew install rbenv
+brew upgrade rbenv ruby-build
 rbenv init
 
 brew install telnet

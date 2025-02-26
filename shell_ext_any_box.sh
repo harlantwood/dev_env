@@ -14,7 +14,7 @@
 # # Prompt
 # ###############################################################################
 
-if [ -n $IN_NIX_SHELL ]; then
+if [[ -n $IN_NIX_SHELL ]] ; then
   parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
   }
@@ -119,9 +119,10 @@ function yad {
 }
 
 ###############################################################################
-# NPM
+# NPM & Node
 ###############################################################################
 
+alias p='pnpm'
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
 alias nup='ncu --upgrade && npm update && npm prune' # if this fails:  `npm upgrade -g npm-check-updates`

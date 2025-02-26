@@ -10,6 +10,15 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ###############################################################################
+# Imports
+###############################################################################
+
+# SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)  # works in bash
+SCRIPT_DIR=${0:a:h} # zsh only
+
+. ${SCRIPT_DIR}/shell_ext_any_box.sh
+
+###############################################################################
 # Prompt
 ###############################################################################
 
@@ -21,9 +30,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[[ -f /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme ]] && source /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 # [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
@@ -38,15 +46,6 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 ###############################################################################
 
 # eval "$(direnv hook zsh)"
-
-###############################################################################
-# Imports
-###############################################################################
-
-# SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)  # works in bash
-SCRIPT_DIR=${0:a:h} # zsh only
-
-. ${SCRIPT_DIR}/shell_ext_any_box.sh
 
 ###############################################################################
 # zsh
@@ -119,6 +118,7 @@ alias ecs='ecs-cli'
 # Docker
 ###############################################################################
 
+export PATH="$HOME/.docker/bin:$PATH"
 alias d='docker'
 alias dc='docker-compose'
 alias dnuke='docker container rm --force --volumes $(docker container ls --quiet --all) ; docker network rm $(docker network ls -q)'
@@ -267,14 +267,15 @@ alias hs='http-server -c-1'
 # alias pgstart='pg_ctl -D /usr/local/var/postgres start'
 # alias pgstop='pg_ctl -D /usr/local/var/postgres stop'
 
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+POSGRESQL_VERSION="${POSGRESQL_VERSION:-16}"
+export PATH="/opt/homebrew/opt/postgresql@${POSGRESQL_VERSION}/bin:$PATH"
 
 # For compilers to find postgresql@16 you may need to set:
-export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@${POSGRESQL_VERSION}/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@${POSGRESQL_VERSION}/include"
 
 # For pkg-config to find postgresql@16 you may need to set:
-export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@16/lib/pkgconfig"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@${POSGRESQL_VERSION}/lib/pkgconfig"
 
 #alias tomcat-start='/usr/local/Cellar/tomcat6/6.0.45/bin/startup.sh'
 #alias tomcat-shutdown='/usr/local/Cellar/tomcat6/6.0.45/bin/shutdown.sh'

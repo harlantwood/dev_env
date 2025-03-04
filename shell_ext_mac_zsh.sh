@@ -31,6 +31,7 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]] && source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ -f /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme ]] && source /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
@@ -109,6 +110,18 @@ alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 alias sound='sudo killall coreaudiod' # fix sound on mac
 
 ###############################################################################
+# Windsurf
+###############################################################################
+
+if [[ -d "${HOME}/.codeium/windsurf/bin" ]]; then
+  export PATH="${PATH}:${HOME}/.codeium/windsurf/bin"
+  if ! which code &>/dev/null; then
+    alias code='windsurf'
+  fi
+fi
+
+
+###############################################################################
 # AWS
 ###############################################################################
 
@@ -185,9 +198,11 @@ fi
 
 # rbenv:
 
-eval "$(rbenv init -)"                #bash
-export PATH="$HOME/.rbenv/bin:$PATH"  #zsh
-eval "$(rbenv init - zsh)"            #zsh
+if command -v rbenv > /dev/null; then
+  eval "$(rbenv init -)"                #bash
+  export PATH="$HOME/.rbenv/bin:$PATH"  #zsh
+  eval "$(rbenv init - zsh)"            #zsh
+fi
 
 # ###############################################################################
 # # asdf

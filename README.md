@@ -29,11 +29,14 @@ To set up p10k prompt:
     cd ~
     ln -s .dev_env/.p10k.zsh
 
-To set up vscode settings:
-To set up vscode or cursor settings:
+To set up vscode or cursor or windsurf settings:
 
-    cd ~/Library/Application\ Support/Code/User  # OR if Cursor:
+    cd ~/Library/Application\ Support/Code/User
+    # OR if Cursor:
     cd ~/Library/Application\ Support/Cursor/User
+    # OR if Windsurf:
+    cd ~/Library/Application\ Support/Windsurf/User
+
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/settings.json
     ln -sf ~/.dev_env/vscode/home-lib-app-sup-code-user/keybindings.json
 

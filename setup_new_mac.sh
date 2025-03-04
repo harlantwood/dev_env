@@ -4,6 +4,10 @@ set -uxo pipefail
 
 xcode-select --install
 
+# Set up passwordless sudo:
+# sudo visudo
+# %admin ALL = (ALL) NOPASSWD: ALL
+
 which brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # for Python that works with fastai:
@@ -11,8 +15,7 @@ brew install python
 # then follow https://pnote.eu/notes/fastai-pytorch-mac-setup/
 
 # AI:
-# better: https://docs.anaconda.com/miniconda/
-# brew install --cask anaconda
+brew install --cask anaconda
 
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true
@@ -88,10 +91,6 @@ brew install jq
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 brew install openjdk
-
-# Set up passwordless sudo:
-# sudo visudo
-# %admin ALL = (ALL) NOPASSWD: ALL
 
 # bun (JS)
 brew install oven-sh/bun/bun

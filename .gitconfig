@@ -1,13 +1,13 @@
 #
 # Project level settings are highest priority ("local wins"), from <project dir>/.git/config
 # Then user level settings from this file (~/.gitconfig)
-# Then system level settings, from (on OSX using macports) /opt/local/etc/gitconfig
+# Then system level settings, from (on OSX using brew) /opt/homebrew/etc/gitconfig
 #
 # To use this as your user level gitconfig:
 # ln -s /path/to/gitconfig ~/.gitconfig
 #
 # To use it as your system level gitconfig:
-# sudo ln -s /path/to/gitconfig /opt/local/etc/gitconfig
+# sudo ln -s /path/to/gitconfig /opt/homebrew/etc/gitconfig
 #
 
 [alias]

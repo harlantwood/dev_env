@@ -23,6 +23,8 @@ killall Finder
 
 brew install powerlevel10k
 
+brew install ollama
+
 brew install gh  # github cli
 
 brew install --cask iterm2

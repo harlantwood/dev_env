@@ -149,13 +149,28 @@ alias m='mix'
 
 if [ $OSTYPE != 'linux-gnu' ]; then
 
+  # first one in PATH wins, so last one in this list wins
+  export PATH="/opt/homebrew/opt/pnpm@9/bin:${PATH}"
+  export PATH="/usr/sbin:${PATH}"
+  export PATH="/usr/local/lib:${PATH}"
+  export PATH="/usr/local/sbin:${PATH}"
+  export PATH="/usr/local/bin:${PATH}"
+  export PATH="/usr/local/share/npm/bin:${PATH}"
+  export PATH="${HOME}/bin:${PATH}"
+
   export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
 
-  export PATH="$(echo $HOME)/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/sbin:$PATH"
-
   export MANPATH=$MANPATH:/opt/local/man
-  export EDITOR='code'
-  alias vs=code
+
+  if command -v windsurf &>/dev/null; then
+    export EDITOR='windsurf'
+  else
+    if command -v code &>/dev/null; then
+      export EDITOR='code'
+    else
+      export EDITOR='nano'
+    fi
+  fi
 
   # # For homebrew-based mysql install:
   # alias mystop='/usr/local/opt/mysql56/bin/mysql.server stop' #  ; killall mysqld'

@@ -11,14 +11,14 @@
 #
 
 [alias]
-a = !git config --list | grep alias
+a = !set -x && git config --list | grep alias
 #anw = !sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -' # add non-whitespace changes, from http://stackoverflow.com/a/7149602/1533892
 aa = add --all
 au = add --intent-to-add
 ap = add --patch
 ba = branch -v -a
 bd = for-each-ref --sort=committerdate refs/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-bh = !git bd | grep Harlan
+bh = !set -x && git bd | grep Harlan
 br = branch -v
 ca = commit --amend
 can = commit --amend --no-edit
@@ -27,7 +27,7 @@ changelog = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yell
 ci = commit
 cl = config --list
 co = checkout
-dev = !git fetch && git co development && git up
+dev = !set -x && git fetch && git co development && git up
 cp = cherry-pick --strategy-option=patience
 cpa = cherry-pick --abort
 cpc = cherry-pick --continue
@@ -45,24 +45,25 @@ lt = log --oneline --decorate --graph --tags --remotes --branches --pretty=forma
 lst = log --oneline --decorate --2 --tags --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 ld = log --oneline --decorate --graph --tags --remotes --branches --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 lsd = log --oneline --decorate --graph --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
-# lv = log -p ':(exclude)yarn.lock' ':(exclude)package-lock.json'
+# lv = log -p -- ':(exclude)yarn.lock' ':(exclude)package-lock.json'
 lv = log -p
-main = !git fetch && git co main && git up
+mom = !set -x && git fetch && git merge --no-edit origin/main
 ms = merge --squash
+mup = !set -x && git checkout main && git up && git show --quiet
 pr = pull --rebase --autostash
 ps = push --tags --set-upstream origin HEAD
 ph = push --tags --set-upstream origin HEAD
 phf = push --tags --set-upstream --force-with-lease origin HEAD
 ra = rebase --abort
 rc = rebase --continue
-rod = !git fetch && git rebase origin/development
+rod = !set -x && git fetch && git rebase origin/development
 riod = rebase --interactive origin/development
 riom = rebase --interactive origin/main
-rom = !git fetch && git rebase origin/main
-riomas = rebase --interactive origin/master
-romas = !git fetch && git rebase origin/master
+rom = !set -x && git fetch && git rebase --autostash origin/main
+riomas = rebase --autostash --interactive origin/master
+romas = !set -x && git fetch && git rebase origin/master
 rh = reset --hard
-ri = rebase -i
+ri = rebase --interactive
 sa = stash apply
 sa0 = stash apply stash@{0}
 sa1 = stash apply stash@{1}
@@ -83,16 +84,10 @@ today = log --pretty=format:"%s%b" --since="midnight" --reverse
 up = pull --rebase --autostash # requires git 2.9+
 lol = log --graph --decorate --pretty=oneline --abbrev-commit
 lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-# up = !git fetch && git rebase --autostash $(git for-each-ref --format \"%(upstream:short)\" $(git symbolic-ref -q HEAD))
-# up = !git fetch && git rebase --autostash FETCH_HEAD
-
-# git config --global color.branch auto
-# git config --global color.diff auto
-# git config --global color.interactive auto
-# git config --global color.status auto
-# git config --global push.default current
-# git config --global pull.rebase true
-# git config --global fetch.prune true
+w = commit -m "WIP"
+wa = !set -x && git add . && git commit -m "WIP"
+wap = !set -x && git add . && git commit -m "WIP" && git push origin HEAD
+wamp = !set -x && git add . && git commit -m "WIP" && git mom && git push origin HEAD
 
 [branch]
 autosetupmerge = true

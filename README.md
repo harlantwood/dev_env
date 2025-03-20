@@ -49,6 +49,7 @@ code --list-extensions >> vscode/extensions.txt
 And to reinstall them elsewhere:
 
     cat vscode/extensions.txt | xargs -n 1 code --install-extension
+```
 
 To set up IntelliJ keymap:
 

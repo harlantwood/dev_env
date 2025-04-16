@@ -40,7 +40,7 @@ brew install watch
 
 brew install zsh zsh-completions
 # MAYBE:
-sudo echo "$(which zsh)" >> /etc/shells
+echo "$(which zsh)" | sudo tee -a /etc/shells
 chsh -s $(which zsh)
 
 brew install golang

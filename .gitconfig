@@ -25,6 +25,7 @@ can = commit --amend --no-edit
 car = commit --amend --reset-author
 changelog = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --first-parent
 ci = commit
+cin = commit --no-message
 cl = config --list
 co = checkout
 dev = !set -x && git fetch && git co development && git up
@@ -32,10 +33,11 @@ cp = cherry-pick --strategy-option=patience
 cpa = cherry-pick --abort
 cpc = cherry-pick --continue
 delrem = push origin --delete # delete remote branch
-# df = diff --ignore-all-space --find-renames ':(exclude)yarn.lock' ':(exclude)package-lock.json'
+# df = diff --ignore-all-space --find-renames ':(exclude)pnpm-lock.yaml' ':(exclude)yarn.lock' ':(exclude)package-lock.json'
 df = diff --ignore-all-space --find-renames
-ds = diff --ignore-all-space --find-renames --staged
-dv = diff --ignore-all-space --find-renames --unified=50 # note: --unified=<number of lines of context around diff>
+dfw = diff --ignore-all-space --find-renames ':(exclude)pnpm-lock.yaml' ':(exclude)yarn.lock' ':(exclude)package-lock.json'
+ds = diff --ignore-all-space --find-renames --staged ':(exclude)pnpm-lock.yaml' ':(exclude)yarn.lock' ':(exclude)package-lock.json'
+dv = diff --ignore-all-space --find-renames --unified=50 ':(exclude)pnpm-lock.yaml' ':(exclude)yarn.lock' ':(exclude)package-lock.json' # note: --unified=<number of lines of context around diff>
 ft = fetch
 gp = gh-pages-push
 l = log --oneline --decorate --graph --tags --remotes --branches
@@ -46,7 +48,7 @@ lst = log --oneline --decorate --2 --tags --pretty=format:'%Cred%h%Creset -%C(ye
 ld = log --oneline --decorate --graph --tags --remotes --branches --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 lsd = log --oneline --decorate --graph --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 # lv = log -p -- ':(exclude)yarn.lock' ':(exclude)package-lock.json'
-lv = log -p
+lv = log -p --ignore-all-space
 mom = !set -x && git fetch && git merge --no-edit origin/main
 ms = merge --squash
 mup = !set -x && git checkout main && git up && git show --quiet
@@ -56,6 +58,7 @@ ph = push --tags --set-upstream origin HEAD
 phf = push --tags --set-upstream --force-with-lease origin HEAD
 ra = rebase --abort
 rc = rebase --continue
+arc = !set -x && git add . && git rebase --continue
 rod = !set -x && git fetch && git rebase origin/development
 riod = rebase --interactive origin/development
 riom = rebase --interactive origin/main

@@ -49,6 +49,7 @@
     },
 
     "[json]": {
+        "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
 
@@ -205,7 +206,7 @@
     "plantuml.render": "PlantUMLServer",
     "workbench.editor.showTabs": "multiple",
     "terminal.integrated.enableMultiLinePasteWarning": false,
-    "workbench.colorTheme": "Night Owl",
+    "workbench.colorTheme": "Night Owl (No Italics)",
     "editor.unicodeHighlight.invisibleCharacters": false,
     "extensions.ignoreRecommendations": true,
     "remote.SSH.defaultExtensions": [
@@ -233,9 +234,41 @@
         "scminput"
     ],
     "windsurf.autocompleteSpeed": "fast",
-    "windsurf.autoExecutionPolicy": "off",
+    "windsurf.autoExecutionPolicy": "auto",
     "windsurf.chatFontSize": "default",
     "windsurf.rememberLastModelSelection": true,
     "windsurf.openRecentConversation": true,
-    "windsurf.explainAndFixInCurrentConversation": true
+    "windsurf.explainAndFixInCurrentConversation": true,
+    "windsurf.cascadeCommandsDenyList": [
+        "rm"
+    ],
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "bash",
+            "args": [
+                "-l"
+            ],
+            "icon": "terminal-bash"
+        },
+        "zsh": {
+            "path": "zsh",
+            "args": [
+                "-l"
+            ]
+        },
+        "fish": {
+            "path": "fish",
+            "args": [
+                "-l"
+            ]
+        },
+        "tmux": {
+            "path": "tmux",
+            "icon": "terminal-tmux"
+        },
+        "pwsh": {
+            "path": "pwsh",
+            "icon": "terminal-powershell"
+        }
+    }
 }

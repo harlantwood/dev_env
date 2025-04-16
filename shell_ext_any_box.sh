@@ -125,7 +125,7 @@ function yad {
 alias p='pnpm'
 alias nbump='npm version patch'
 alias npub='npm version patch && git push --tags origin HEAD && npm publish'
-alias nup='ncu --upgrade && npm update && npm prune' # if this fails:  `npm upgrade -g npm-check-updates`
+alias nup='bash -c -x "ncu --upgrade && npm update && npm prune"' # if this fails:  `npm i -g npm-check-updates`
 alias n='npm'
 alias nt='npm test'
 alias nr='npm run'

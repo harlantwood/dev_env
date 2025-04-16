@@ -22,17 +22,23 @@ SCRIPT_DIR=${0:a:h} # zsh only
 # Prompt
 ###############################################################################
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# CLINE_COMPAT_MODE=true
+if [[ "$CLINE_COMPAT_MODE" == "true" && -n "$TERM_PROGRAM" && "$TERM_PROGRAM" == "vscode"  ]]; then
+  # set vscode terminal prompt for cline if desired
+else
+  # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+  # Initialization code that may require console input (password prompts, [y/n]
+  # confirmations, etc.) must go above this block; everything else may go below.
+  if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  fi
+
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+  [[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]] && source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+  [[ -f /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme ]] && source /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-[[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]] && source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
-[[ -f /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme ]] && source /opt/homebrew/Cellar/powerlevel10k/1.16.1/powerlevel10k.zsh-theme
 
 # [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 # [[ -r "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh" ]] && . "/usr/local/opt/git/etc/bash_completion.d/git-prompt.sh"
@@ -115,6 +121,11 @@ alias sound='sudo killall coreaudiod' # fix sound on mac
 
 if [[ -d "${HOME}/.codeium/windsurf/bin" ]]; then
   export PATH="${PATH}:${HOME}/.codeium/windsurf/bin"
+  if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    # needed for Cline to see results of running shell commands:
+    # (set -x && windsurf --locate-shell-integration-path zsh)
+    . "$(windsurf --locate-shell-integration-path zsh)"
+  fi
   if ! which code &>/dev/null; then
     alias code='windsurf'
   fi
@@ -133,7 +144,7 @@ alias ecs='ecs-cli'
 
 export PATH="$HOME/.docker/bin:$PATH"
 alias d='docker'
-alias dc='docker-compose'
+alias dc='docker compose'  # note: docker-compose is deprecated
 alias dnuke='docker container rm --force --volumes $(docker container ls --quiet --all) ; docker network rm $(docker network ls -q)'
 
 ###############################################################################
@@ -285,6 +296,7 @@ fi
 ###############################################################################
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 ###############################################################################
 # Other

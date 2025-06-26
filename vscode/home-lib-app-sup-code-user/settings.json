@@ -68,14 +68,21 @@
     "cSpell.userWords": [
         "Alderaan",
         "architecting",
+        "autoevals",
+        "Bibobabubob",
         "blockchain",
+        "braintrust",
+        "bulletpoints",
         "Cryptographically",
         "Datetimepicker",
+        "evals",
         "funder",
         "harlantwood",
         "Heroku",
         "HOLOMATRIX",
         "Ideyalabs",
+        "Kaggle",
+        "kgraph",
         "Mercola",
         "meridium",
         "nlevel",
@@ -86,6 +93,7 @@
         "sharded",
         "sharex",
         "sveltejs",
+        "Undefineds",
         "Vapi",
         "vism",
         "wikinodes"
@@ -270,5 +278,6 @@
             "path": "pwsh",
             "icon": "terminal-powershell"
         }
-    }
+    },
+    "cSpell.diagnosticLevel": "Hint"
 }

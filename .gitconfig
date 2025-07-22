@@ -26,6 +26,7 @@ car = commit --amend --reset-author
 changelog = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --first-parent
 ci = commit
 cin = commit --no-message
+ce = !set -x && git commit --allow-empty
 cl = config --list
 co = checkout
 com = !set -x && git checkout origin/main --
@@ -93,6 +94,7 @@ w = commit -m "WIP"
 wa = !set -x && git add . && git commit -m "WIP"
 wap = !set -x && git add . && git commit -m "WIP" && git push origin HEAD
 wamp = !set -x && git add . && git commit -m "WIP" && git mom && git push origin HEAD
+we = !set -x && git commit --allow-empty -m "WIP"
 
 [branch]
 autosetupmerge = true

@@ -1,5 +1,4 @@
 alexkrechik.cucumberautocomplete
-aliariff.vscode-erb-beautify
 anysphere.pyright
 artdiniz.quitcontrol-vscode
 bbenoist.nix
@@ -7,9 +6,7 @@ bierner.color-info
 bradlc.vscode-tailwindcss
 castwide.solargraph
 codeium.codeium
-craigmaslowski.erb
 denoland.vscode-deno
-elia.erb-formatter
 esbenp.prettier-vscode
 feego.night-owl-light-bold-more-contrast
 github.codespaces
@@ -51,5 +48,6 @@ streetsidesoftware.code-spell-checker
 svelte.svelte-vscode
 tamasfe.even-better-toml
 tintinweb.graphviz-interactive-preview
+vortizhe.simple-ruby-erb
 vue.volar
 waderyan.gitblame

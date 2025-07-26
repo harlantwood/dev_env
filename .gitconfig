@@ -26,8 +26,10 @@ car = commit --amend --reset-author
 changelog = log --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --first-parent
 ci = commit
 cin = commit --no-message
+ce = !set -x && git commit --allow-empty
 cl = config --list
 co = checkout
+com = !set -x && git checkout origin/main --
 dev = !set -x && git fetch && git co development && git up
 cp = cherry-pick --strategy-option=patience
 cpa = cherry-pick --abort
@@ -50,6 +52,7 @@ lsd = log --oneline --decorate --graph --tags --pretty='%Cred%h %Cgreen%ad%Crese
 # lv = log -p -- ':(exclude)yarn.lock' ':(exclude)package-lock.json'
 lv = log -p --ignore-all-space
 mom = !set -x && git fetch && git merge --no-edit origin/main
+ma = !set -x && git add . && git commit --no-edit
 ms = merge --squash
 mup = !set -x && git checkout main && git up && git show --quiet
 pr = pull --rebase --autostash
@@ -91,6 +94,7 @@ w = commit -m "WIP"
 wa = !set -x && git add . && git commit -m "WIP"
 wap = !set -x && git add . && git commit -m "WIP" && git push origin HEAD
 wamp = !set -x && git add . && git commit -m "WIP" && git mom && git push origin HEAD
+we = !set -x && git commit --allow-empty -m "WIP"
 
 [branch]
 autosetupmerge = true

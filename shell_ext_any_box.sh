@@ -182,3 +182,13 @@ alias rds='r db:seed'
 alias work='r jobs:work'
 
 alias ss='spring stop'
+
+###############################################################################
+# Claude Code
+###############################################################################
+
+if [ -f "${HOME}/.claude/local/claude" ]; then
+  alias claude="${HOME}/.claude/local/claude"
+fi
+
+alias cl='claude --ide --dangerously-skip-permissions'

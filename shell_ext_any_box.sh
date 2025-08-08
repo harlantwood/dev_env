@@ -192,3 +192,5 @@ if [ -f "${HOME}/.claude/local/claude" ]; then
 fi
 
 alias cl='claude --ide --dangerously-skip-permissions'
+
+alias cdx='codex --ask-for-approval never --full-auto --sandbox danger-full-access'

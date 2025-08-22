@@ -90,10 +90,10 @@ today = log --pretty=format:"%s%b" --since="midnight" --reverse
 up = pull --rebase --autostash # requires git 2.9+
 lol = log --graph --decorate --pretty=oneline --abbrev-commit
 lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-w = commit -m "WIP"
-wa = !set -x && git add . && git commit -m "WIP"
-wap = !set -x && git add . && git commit -m "WIP" && git push origin HEAD
-wamp = !set -x && git add . && git commit -m "WIP" && git mom && git push origin HEAD
+w = !set -x && git commit -m "WIP" && git show --stat
+wa = !set -x && git add . && git commit -m "WIP" && git show --stat
+wap = !set -x && git add . && git commit -m "WIP" && git push origin HEAD && git show --stat
+wamp = !set -x && git add . && git commit -m "WIP" && git mom && git push origin HEAD && git show --stat
 we = !set -x && git commit --allow-empty -m "WIP"
 
 [branch]

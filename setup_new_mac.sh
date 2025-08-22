@@ -18,6 +18,7 @@ brew install python
 brew install --cask anaconda
 brew install --cask lm-studio
 brew install ollama
+brew install --cask superwhisper
 
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true

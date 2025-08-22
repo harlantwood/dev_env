@@ -283,8 +283,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Python / ML
 ###############################################################################
 
-export PATH=$PATH:/opt/homebrew/opt/python@3.11/libexec/bin
-export PATH=$PATH:$HOME/miniconda3/condabin
+# export PATH=$PATH:/opt/homebrew/opt/python@3.11/libexec/bin
+# export PATH=$PATH:$HOME/miniconda3/condabin
+export PATH="$PATH:/opt/homebrew/anaconda3/bin"
 
 # for venv:
 if [[ -f .env/bin/activate ]]; then

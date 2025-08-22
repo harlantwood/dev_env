@@ -16,6 +16,7 @@ brew install python
 
 # AI:
 brew install --cask anaconda
+brew install --cask superwhisper
 
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true

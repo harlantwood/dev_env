@@ -191,4 +191,4 @@ if [ -f "${HOME}/.claude/local/claude" ]; then
   alias claude="${HOME}/.claude/local/claude"
 fi
 
-alias cl='claude --ide --dangerously-skip-permissions'
+alias cl='claude update && claude --ide --dangerously-skip-permissions'

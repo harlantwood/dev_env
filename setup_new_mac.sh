@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-set -uxo pipefail
-# set -e
+set -ueo pipefail
+set -x
 
 xcode-select --install
 
@@ -16,6 +16,8 @@ brew install python
 
 # AI:
 brew install --cask anaconda
+brew install --cask lm-studio
+brew install ollama
 
 # show hidden files:
 defaults write com.apple.Finder AppleShowAllFiles true

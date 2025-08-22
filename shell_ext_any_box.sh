@@ -193,4 +193,4 @@ fi
 
 alias cl='claude --ide --dangerously-skip-permissions'
 
-alias cdx='codex --ask-for-approval never --full-auto --sandbox danger-full-access'
+alias cdx='(set -x && brew upgrade codex) && codex --full-auto'

@@ -173,11 +173,11 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   export MANPATH=$MANPATH:/opt/local/man
 
-  if command -v windsurf &>/dev/null; then
-    export EDITOR='windsurf'
+  if command -v code &>/dev/null; then
+    export EDITOR='code'
   else
-    if command -v code &>/dev/null; then
-      export EDITOR='code'
+    if command -v windsurf &>/dev/null; then
+      export EDITOR='windsurf'
     else
       export EDITOR='nano'
     fi

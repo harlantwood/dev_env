@@ -173,12 +173,15 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   export MANPATH=$MANPATH:/opt/local/man
 
-  if command -v code &>/dev/null; then
+  # if code is installed and not already aliased, use it as editor
+  if command -v code &>/dev/null && ! alias code &>/dev/null 2>&1; then
     export EDITOR='code'
   else
+    # if windsurf is installed, use it as editor
     if command -v windsurf &>/dev/null; then
       export EDITOR='windsurf'
     else
+      # otherwise use nano
       export EDITOR='nano'
     fi
   fi

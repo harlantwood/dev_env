@@ -12,7 +12,9 @@ In home dir [cd ~] or Directory of your choosing:
 
 ---
 
-## _30 second install for bash extensions, git config, idea keymap_
+## Install
+
+_30 second install for bash extensions, git config, idea keymap_
 
 Copy the following into your ~/.zshrc (or ~/.bash_profile or similar):
 
@@ -55,3 +57,7 @@ To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps
     ln -s ~/.dev_env/keymap_idea_osx_custom.xml
+
+### AI
+
+cd ~ && mkdir -p .codex && ln -s ~/.dev_env/ai/AGENTS.md

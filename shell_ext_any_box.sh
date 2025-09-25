@@ -94,9 +94,9 @@ alias mdkir='mkdir'
 
 # aider
 
-alias aidson='aider --map-tokens 2048 --model claude-3-5-sonnet-20240620 --weak-model claude-3-5-sonnet-20240620 --anthropic-api-key="${ANTHROPIC_API_KEY_AIDER}"'
-alias aid4o='aider --map-tokens 2048 --model="gpt-4o" --weak-model="gpt-4o" --openai-api-key="${OPENAI_API_KEY_AIDER}"'
-alias aid40=aid4o
+# alias aidson='aider --map-tokens 2048 --model claude-3-5-sonnet-20240620 --weak-model claude-3-5-sonnet-20240620 --anthropic-api-key="${ANTHROPIC_API_KEY_AIDER}"'
+# alias aid4o='aider --map-tokens 2048 --model="gpt-4o" --weak-model="gpt-4o" --openai-api-key="${OPENAI_API_KEY_AIDER}"'
+# alias aid40=aid4o
 
 ###############################################################################
 # Yarn
@@ -193,4 +193,6 @@ fi
 
 alias cl='claude update && claude --ide --dangerously-skip-permissions'
 
-alias cdx='(set -x && brew upgrade codex) && codex --full-auto'
+alias cx='(set -x && brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
+# cdx means "codex dangerously"
+alias cxd='(set -x && brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'

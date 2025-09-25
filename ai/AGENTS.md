@@ -1,0 +1,1 @@
+- When running a ruby or bundler command, prefix with `eval "$(rbenv init -)" && <the command>` -- this ensures the correct ruby version is used.

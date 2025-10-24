@@ -200,3 +200,9 @@ alias cl='claude update && claude --ide --dangerously-skip-permissions'
 alias cx='(set -x && brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
 # cxd means "codex dangerous":
 alias cxd='(set -x && brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'
+
+###############################################################################
+# Gemini CLI
+###############################################################################
+
+alias gi='npm install -g @google/gemini-cli && gemini --yolo'

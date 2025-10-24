@@ -30,6 +30,8 @@ brew install ollama
 
 brew install gh  # github cli
 
+brew install ripgrep
+
 brew install --cask iterm2
 
 brew install --cask visual-studio-code

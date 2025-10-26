@@ -196,6 +196,16 @@ alias ss='spring stop'
 
 alias cl='claude update && claude --ide --dangerously-skip-permissions'
 
+###############################################################################
+# Codex
+###############################################################################
+
 alias cx='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
-# cdx means "codex dangerously"
+# cxd means "codex dangerous":
 alias cxd='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'
+
+###############################################################################
+# Gemini CLI
+###############################################################################
+
+alias gi='npm install -g @google/gemini-cli && gemini --yolo'

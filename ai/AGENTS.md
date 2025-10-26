@@ -1,1 +1,2 @@
 - When running a ruby or bundler command, prefix with `eval "$(rbenv init -)" && <the command>` -- this ensures the correct ruby version is used.
+- DO NOT start a web server (rails server, puma, node, etc) unless user says so explicitly.  The user prefers to start servers themselves, as they can get hung in the background otherwise.

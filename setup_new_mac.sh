@@ -74,6 +74,8 @@ brew install telnet
 # brew install --cask multipass
 brew install redis
 
+brew install pstree
+
 brew install cmake
 brew install --cask chromedriver
 brew install lnav

@@ -44,6 +44,9 @@ alias llt='ls -lhFart'
 
 alias a=alias
 
+alias k9='sudo kill -9'
+alias ka9='sudo killall -9'
+
 alias br='bin/run'
 
 # eg "ga rake" to see all rake-related aliases
@@ -187,12 +190,12 @@ alias ss='spring stop'
 # Claude Code
 ###############################################################################
 
-if [ -f "${HOME}/.claude/local/claude" ]; then
-  alias claude="${HOME}/.claude/local/claude"
-fi
+# if [ -f "${HOME}/.claude/local/claude" ]; then
+#   alias claude="${HOME}/.claude/local/claude"
+# fi
 
 alias cl='claude update && claude --ide --dangerously-skip-permissions'
 
-alias cx='(set -x && brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
+alias cx='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
 # cdx means "codex dangerously"
-alias cxd='(set -x && brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'
+alias cxd='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'

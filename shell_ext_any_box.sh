@@ -194,15 +194,15 @@ alias ss='spring stop'
 #   alias claude="${HOME}/.claude/local/claude"
 # fi
 
-alias cl='claude update && claude --ide --dangerously-skip-permissions'
+alias cl='brew upgrade --cask claude-code ; claude update && claude --ide --dangerously-skip-permissions'
 
 ###############################################################################
 # Codex
 ###############################################################################
 
-alias cx='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --sandbox danger-full-access --ask-for-approval never'
+alias cx='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade --cask codex) && codex --sandbox danger-full-access --ask-for-approval never'
 # cxd means "codex dangerous":
-alias cxd='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade codex) && codex --dangerously-bypass-approvals-and-sandbox'
+alias cxd='(set -x && HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade --cask codex) && codex --dangerously-bypass-approvals-and-sandbox'
 
 ###############################################################################
 # Gemini CLI

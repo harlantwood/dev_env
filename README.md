@@ -58,11 +58,17 @@ And to reinstall them elsewhere:
     cat vscode/extensions.txt | xargs -n 1 code --install-extension
 ```
 
+### AI
+
+cd ~ && mkdir -p .codex && ln -s ~/.dev_env/ai/AGENTS.md
+
+### tmux
+
+cd ~ && ln -s ~/.dev_env/.tmux.conf
+
+### IntelliJ
+
 To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps
     ln -s ~/.dev_env/keymap_idea_osx_custom.xml
-
-### AI
-
-cd ~ && mkdir -p .codex && ln -s ~/.dev_env/ai/AGENTS.md

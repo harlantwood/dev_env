@@ -60,7 +60,8 @@ And to reinstall them elsewhere:
 
 ### AI
 
-cd ~ && mkdir -p .codex && ln -s ~/.dev_env/ai/AGENTS.md
+cd ~ && mkdir -p .codex && cd .codex && ln -s ~/.dev_env/ai/AGENTS.md
+cd ~ && mkdir -p .claude && cd .claude && ln -s ~/.dev_env/ai/AGENTS.md CLAUDE.md
 
 ### tmux
 
@@ -72,3 +73,4 @@ To set up IntelliJ keymap:
 
     cd ~/Library/Preferences/IntelliJIdea[VERSION]/keymaps
     ln -s ~/.dev_env/keymap_idea_osx_custom.xml
+

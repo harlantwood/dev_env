@@ -190,20 +190,18 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   export MANPATH=$MANPATH:/opt/local/man
 
+  # if antigravity is installed, use it as editor
+  if command -v agy &>/dev/null; then
+    export EDITOR='agy'
   # if code is installed and not already aliased, use it as editor
-  if command -v code &>/dev/null && ! alias code &>/dev/null 2>&1; then
+  elif command -v code &>/dev/null && ! alias code &>/dev/null 2>&1; then
     export EDITOR='code'
+  # if cursor is installed, use it as editor
+  elif command -v cursor &>/dev/null; then
+    export EDITOR='cursor'
   else
-    # if cursor is installed, use it as editor
-    if command -v cursor &>/dev/null; then
-      export EDITOR='cursor'
-    # if windsurf is installed, use it as editor
-    elif command -v windsurf &>/dev/null; then
-      export EDITOR='windsurf'
-    else
-      # otherwise use nano
-      export EDITOR='nano'
-    fi
+    # otherwise use nano
+    export EDITOR='nano'
   fi
 
   # # For homebrew-based mysql install:

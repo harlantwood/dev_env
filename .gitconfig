@@ -49,6 +49,7 @@ ls = log --stat
 lg = log --oneline --decorate --graph --tags
 lt = log --oneline --decorate --graph --tags --remotes --branches --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=iso
 ltb = log --oneline --decorate --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=iso
+ltd = log --oneline --decorate --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 lst = log --oneline --decorate --2 --tags --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 ld = log --oneline --decorate --graph --tags --remotes --branches --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
 lsd = log --oneline --decorate --graph --tags --pretty='%Cred%h %Cgreen%ad%Creset%x09%s%x09%Creset%C(bold)%d %an' --date=iso
@@ -59,7 +60,7 @@ momtheirs = !set -x && git fetch && git merge --no-edit origin/main -X theirs
 momours = !set -x && git fetch && git merge --no-edit origin/main -X ours
 ma = !set -x && git add . && git commit --no-edit
 ms = merge --squash
-mup = !set -x && git checkout main && git up && git show --quiet
+mup = !set -x && git checkout main && git up && git show --quiet | head -40
 pr = pull --rebase --autostash
 ps = push --tags --set-upstream origin HEAD
 ph = push --tags --set-upstream origin HEAD
@@ -160,3 +161,13 @@ required = true
 
 [init]
 defaultBranch = main
+[user]
+	email = code@harlantwood.net
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

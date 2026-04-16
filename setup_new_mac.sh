@@ -32,6 +32,7 @@ brew install gh  # github cli
 
 brew install ripgrep
 
+brew install --cask raycast
 brew install --cask iterm2
 
 brew install --cask visual-studio-code

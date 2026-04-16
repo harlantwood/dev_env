@@ -136,18 +136,18 @@ alias sound='sudo killall coreaudiod' # fix sound on mac
 ###############################################################################
 # Windsurf
 ###############################################################################
-
-if [[ -d "${HOME}/.codeium/windsurf/bin" ]]; then
-  export PATH="${PATH}:${HOME}/.codeium/windsurf/bin"
-  if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-    # needed for Cline to see results of running shell commands:
-    # (set -x && windsurf --locate-shell-integration-path zsh)
-    . "$(windsurf --locate-shell-integration-path zsh)"
-  fi
-  if ! which code &>/dev/null; then
-    alias code='windsurf'
-  fi
-fi
+#
+# if [[ -d "${HOME}/.codeium/windsurf/bin" ]]; then
+#   export PATH="${PATH}:${HOME}/.codeium/windsurf/bin"
+#   if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+#     # needed for Cline to see results of running shell commands:
+#     # (set -x && windsurf --locate-shell-integration-path zsh)
+#     . "$(windsurf --locate-shell-integration-path zsh)"
+#   fi
+#   if ! which code &>/dev/null; then
+#     alias code='windsurf'
+#   fi
+# fi
 
 ###############################################################################
 # AWS

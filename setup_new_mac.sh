@@ -44,11 +44,14 @@ brew install --cask rectangle
 brew install --cask linear-linear
 
 brew install watch
+brew install tailscale
 
 brew install zsh zsh-completions
 # MAYBE:
 echo "$(which zsh)" | sudo tee -a /etc/shells
 chsh -s $(which zsh)
+
+brew install stripe/stripe-cli/stripe
 
 brew install golang
 export GOPATH="${HOME}/.go"
@@ -88,7 +91,7 @@ brew services start postgresql@16
 brew install memcached
 brew services start memcached
 brew install openvpn
-brew install --cask ngrok
+brew install ngrok
 brew install shellcheck
 brew install nginx
 brew services start nginx

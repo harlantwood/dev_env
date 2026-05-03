@@ -71,6 +71,20 @@ function tree {
   find ${1:-.} -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
 }
 
+function tmls {
+  if ! command -v tmux >/dev/null 2>&1; then
+    echo "tmux is not installed."
+    return 1
+  fi
+
+  if ! tmux ls >/dev/null 2>&1; then
+    echo "No active tmux sessions."
+    return 0
+  fi
+
+  tmux list-sessions -F 'session: #{session_name} | windows: #{session_windows} | attach: tmux attach -t "#{session_name}"'
+}
+
 if [ $OSTYPE = 'linux-gnu' ]; then
   export EDITOR=$(which nano)
 fi
@@ -206,6 +220,18 @@ fi
 # alias claude-install='curl -fsSL https://claude.ai/install.sh | bash'
 # alias claude-install='npm install -g @anthropic-ai/claude-code'
 # alias claude-upsert='rm -rf "$(npm root -g)/@anthropic-ai/.claude-code-"*; npm install -g @anthropic-ai/claude-code'
+# cl() {
+#   set -x
+#   if [ "$(which -a claude | uniq | wc -l)" -gt 1 ]; then
+#     echo "Multiple claude installations found. Aborting."
+#     return 1
+#   fi
+#   rm -rf "$(npm root -g)/@anthropic-ai/.claude-code-"*
+#   npm install -g @anthropic-ai/claude-code@latest
+#   {awake} || true
+#   claude --ide --dangerously-skip-permissions "$@"
+# }
+
 cl() {
   set -x
   if [ "$(which -a claude | uniq | wc -l)" -gt 1 ]; then
@@ -237,6 +263,8 @@ alias codex-install='(set -x && npm install -g @openai/codex && npm update -g @o
 alias cx='codex-install && codex --sandbox danger-full-access --ask-for-approval never'
 # cxd means "codex dangerous":
 alias cxd='codex-install && codex --dangerously-bypass-approvals-and-sandbox'
+
+alias cxs='codex exec --dangerously-bypass-approvals-and-sandbox "commit the staged changes ONLY with a good commit message, check CLAUDE.md for instructions"'
 
 ###############################################################################
 # Gemini CLI

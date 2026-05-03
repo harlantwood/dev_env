@@ -281,5 +281,9 @@
     "cSpell.diagnosticLevel": "Hint",
     "security.promptForLocalFileProtocolHandling": false,
     "git.blame.editorDecoration.enabled": true,
-    "workbench.colorTheme": "Night Owl (No Italics)"
+    "workbench.colorTheme": "Night Owl (No Italics)",
+    "editor.accessibilitySupport": "on",
+    "accessibility.signals.terminalCommandSucceeded.sound": "off",
+    "accessibility.signals.terminalCommandFailed.sound": "off",
+    "claudeCode.preferredLocation": "panel"
 }

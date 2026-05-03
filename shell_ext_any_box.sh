@@ -218,7 +218,10 @@ cl() {
   claude --ide --dangerously-skip-permissions "$@"
 }
 
+alias cl2='CLAUDE_CONFIG_DIR=~/.claude2 cl'
+
 alias clc='cl --chrome'
+alias cl2c='cl2 --chrome'
 
 alias ccs='claude --dangerously-skip-permissions --model haiku --print "commit the staged changes ONLY with a good commit message, check CLAUDE.md for instructions"'
 alias cca='claude --dangerously-skip-permissions --model haiku --print "commit ALL changes with a good commit message, check CLAUDE.md for instructions"'

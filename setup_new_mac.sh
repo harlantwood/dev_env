@@ -41,6 +41,7 @@ code_cmd="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 
 brew install --cask flycut
 brew install --cask rectangle
+brew install --cask linear-linear
 
 brew install watch
 

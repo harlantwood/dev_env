@@ -134,22 +134,6 @@ alias rmds='find . -name ".DS_Store" -exec rm -rf "{}" \;'
 alias sound='sudo killall coreaudiod' # fix sound on mac
 
 ###############################################################################
-# Windsurf
-###############################################################################
-#
-# if [[ -d "${HOME}/.codeium/windsurf/bin" ]]; then
-#   export PATH="${PATH}:${HOME}/.codeium/windsurf/bin"
-#   if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-#     # needed for Cline to see results of running shell commands:
-#     # (set -x && windsurf --locate-shell-integration-path zsh)
-#     . "$(windsurf --locate-shell-integration-path zsh)"
-#   fi
-#   if ! which code &>/dev/null; then
-#     alias code='windsurf'
-#   fi
-# fi
-
-###############################################################################
 # AWS
 ###############################################################################
 
@@ -190,11 +174,11 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 
   export MANPATH=$MANPATH:/opt/local/man
 
-  # if antigravity is installed, use it as editor
-  if command -v agy &>/dev/null; then
-    export EDITOR='agy'
+  # # if antigravity is installed, use it as editor
+  # if command -v agy &>/dev/null; then
+  #   export EDITOR='agy'
   # if code is installed and not already aliased, use it as editor
-  elif command -v code &>/dev/null && ! alias code &>/dev/null 2>&1; then
+  if command -v code &>/dev/null && ! alias code &>/dev/null 2>&1; then
     export EDITOR='code'
   # if cursor is installed, use it as editor
   elif command -v cursor &>/dev/null; then
@@ -324,6 +308,9 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # Other
 ###############################################################################
 
+# fix for sharp (nodejs image processing library) on M1 macs
+export SHARP_IGNORE_GLOBAL_LIBVIPS=1
+
 alias hs='http-server -c-1'
 
 # alias pjson='underscore print --color'
@@ -363,4 +350,50 @@ function colors {
     echo;
   done
   echo
+}
+
+# Fix Wispr Flow's hotkey / shortcut capture when it stops working (dictation
+# hotkey dead, or the shortcut recorder captures ONLY modifiers, dropping the
+# real key). Cause: Wispr's keystroke capture runs in a separate helper,
+# com.electron.wispr-flow.accessibility-mac-app, with its OWN Input Monitoring +
+# Accessibility (TCC) grants. A Wispr auto-update swaps that helper binary and
+# stales its grant, so key-down events stop reaching it (modifier flags still
+# arrive via a different path). Reset the grants for BOTH the main app and the
+# helper, then relaunch Wispr and re-approve every "Wispr Flow" row in both lists.
+function fix-wispr-keys {
+  local main="com.electron.wispr-flow" helper="com.electron.wispr-flow.accessibility-mac-app"
+  echo "==> Quitting Wispr Flow"
+  osascript -e 'quit app "Wispr Flow"' 2>/dev/null
+  sleep 1
+  pkill -f "swift-helper-app-dist" 2>/dev/null
+  pkill -f "Wispr Flow.app/Contents/MacOS/Wispr Flow" 2>/dev/null
+  sleep 1
+  echo "==> Resetting TCC grants (helper + main app)"
+  local id
+  for id in "$helper" "$main"; do
+    tccutil reset ListenEvent   "$id"
+    tccutil reset Accessibility "$id"
+  done
+  echo "==> Opening permission panes"
+  open "x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent"
+  sleep 1
+  open "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
+  echo "==> Now relaunch Wispr Flow and toggle ON every \"Wispr Flow\" row in BOTH"
+  echo "    Input Monitoring and Accessibility (there can be two identical rows:"
+  echo "    the main app and the helper). Then test your shortcut."
+}
+
+# Watch which process holds macOS Secure Input (a separate, unrelated key
+# blocker: while held, other apps' keyboard taps stop receiving key-downs).
+function watch-secure-input {
+  while :; do
+    local p
+    p=$(ioreg -l -w 0 2>/dev/null | grep -a kCGSSessionSecureInputPID | grep -ao '[0-9]*$')
+    if [ -n "$p" ] && [ "$p" != 0 ]; then
+      echo "$(date +%T)  HELD by $p: $(ps -p "$p" -o comm=)"
+    else
+      echo "$(date +%T)  clear"
+    fi
+    sleep 1
+  done
 }

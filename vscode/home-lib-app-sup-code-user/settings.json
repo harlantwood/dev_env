@@ -240,15 +240,6 @@
         "plaintext",
         "scminput"
     ],
-    "windsurf.autocompleteSpeed": "fast",
-    "windsurf.autoExecutionPolicy": "auto",
-    "windsurf.chatFontSize": "default",
-    "windsurf.rememberLastModelSelection": true,
-    "windsurf.openRecentConversation": true,
-    "windsurf.explainAndFixInCurrentConversation": true,
-    "windsurf.cascadeCommandsDenyList": [
-        "rm"
-    ],
     "terminal.integrated.profiles.osx": {
         "bash": {
             "path": "bash",
@@ -282,8 +273,20 @@
     "security.promptForLocalFileProtocolHandling": false,
     "git.blame.editorDecoration.enabled": true,
     "workbench.colorTheme": "Night Owl (No Italics)",
-    "editor.accessibilitySupport": "on",
+    "editor.accessibilitySupport": "off",
     "accessibility.signals.terminalCommandSucceeded.sound": "off",
     "accessibility.signals.terminalCommandFailed.sound": "off",
-    "claudeCode.preferredLocation": "panel"
+    "accessibility.signals.lineHasInlineSuggestion.sound": "off",
+    "accessibility.signals.lineHasError.sound": "off",
+    "accessibility.signals.lineHasWarning.sound": "off",
+    "accessibility.signals.lineHasBreakpoint.sound": "off",
+    "accessibility.signals.lineHasFoldedArea.sound": "off",
+    "accessibility.signals.noInlayHints.sound": "off",
+    "accessibility.signals.terminalBell.sound": "off",
+    "accessibility.signals.save.sound": "off",
+    "accessibility.signals.format.sound": "off",
+    "accessibility.signals.clear.sound": "off",
+    "claudeCode.preferredLocation": "panel",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "chat.viewSessions.orientation": "stacked"
 }

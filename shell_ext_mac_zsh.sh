@@ -212,27 +212,42 @@ if [ $OSTYPE != 'linux-gnu' ]; then
 fi
 
 ###############################################################################
-# NVM
+# NVM -- retired 2026-07-20, superseded by mise (see below)
 ###############################################################################
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# mise now manages node as well as ruby, and honors .nvmrc via
+# idiomatic_version_file_enable_tools in ~/.config/mise/config.toml. Running
+# both meant two node installs, two copies of every global CLI (claude, codex,
+# ...), and a slow nvm.sh on every shell start. ~/.nvm is still on disk if this
+# needs backing out; delete it once this has stuck.
 
-if [ -f .nvmrc ]; then
-  nvm use > /dev/null   # like direnv, but cheap and trouble free.  Not on `cd` though, only on new shell in that dir.
-fi
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+#
+# if [ -f .nvmrc ]; then
+#   nvm use > /dev/null   # like direnv, but cheap and trouble free.  Not on `cd` though, only on new shell in that dir.
+# fi
 
 ###############################################################################
-# Ruby
+# Ruby / Node -- mise
 ###############################################################################
 
-# rbenv:
+# rbenv: retired, mise is the ruby toolchain. ~/.rbenv/versions is already
+# empty, so this guard never fires; kept only in case an old machine has it.
 
 if command -v rbenv > /dev/null; then
   eval "$(rbenv init -)"                #bash
   export PATH="$HOME/.rbenv/bin:$PATH"  #zsh
   eval "$(rbenv init - zsh)"            #zsh
+fi
+
+# mise: the single version manager for ruby + node. Activates whatever a
+# directory pins in .tool-versions / .ruby-version / .nvmrc / .node-version,
+# and falls back to the [tools] defaults in ~/.config/mise/config.toml.
+
+if command -v mise > /dev/null; then
+  eval "$(mise activate zsh)"
 fi
 
 # ###############################################################################

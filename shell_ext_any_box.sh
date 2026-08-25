@@ -241,7 +241,7 @@ cl() {
   rm -rf "$(npm root -g)/@anthropic-ai/.claude-code-"*
   npm install -g @anthropic-ai/claude-code@latest
   caffeinate -dimsu & # stay awake forever
-  claude --ide --dangerously-skip-permissions "$@"
+  claude --ide --dangerously-skip-permissions --model "claude-opus-4-8[1m]" --effort xhigh "$@"
 }
 
 alias cl2='CLAUDE_CONFIG_DIR=~/.claude2 cl'

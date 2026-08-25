@@ -272,7 +272,7 @@
     "cSpell.diagnosticLevel": "Hint",
     "security.promptForLocalFileProtocolHandling": false,
     "git.blame.editorDecoration.enabled": true,
-    "workbench.colorTheme": "Night Owl (No Italics)",
+    "workbench.colorTheme": "Night Owl",
     "editor.accessibilitySupport": "off",
     "accessibility.signals.terminalCommandSucceeded.sound": "off",
     "accessibility.signals.terminalCommandFailed.sound": "off",

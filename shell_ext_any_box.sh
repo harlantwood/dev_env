@@ -252,13 +252,26 @@ alias cl2c='cl2 --chrome'
 alias cl3c='cl3 --chrome'
 
 # Herdr: open a fresh tab (rooted at $PWD, focused) and launch Claude there via
-# `cl` above. Requires jq. Extra args pass through to `cl`.
-#   clt                -> new tab running `cl`
-#   clt -n 'core 2'    -> tab labeled 'core 2' AND claude --name 'core 2'
-#   clt --resume       -> `-n` labels the tab + names Claude; the rest go to `cl`
+# `cl` above. Requires jq. All args pass through to `cl` (and on to claude),
+# except -n/--name <name>, which — anywhere in the args — both labels the Herdr
+# tab and names the Claude session (claude -n sets the terminal title Herdr's
+# sidebar shows, so no manual /rename).
+#   clt                     -> new tab running `cl`
+#   clt -n 'core 2'         -> tab labeled 'core 2' AND claude --name 'core 2'
+#   clt --resume -n 'core'  -> same; -n works in any position, rest goes to `cl`
 clt() {
   label=""
-  if [ "$1" = "-n" ]; then label="$2"; shift 2; fi
+  rest=""
+  expect_name=0
+  for a in "$@"; do
+    if [ "$expect_name" = 1 ]; then label="$a"; expect_name=0; continue; fi
+    case "$a" in
+      -n|--name) expect_name=1 ;;
+      --name=*) label="${a#--name=}" ;;
+      *) rest="$rest $(printf '%q' "$a")" ;;
+    esac
+  done
+
   if [ -n "$label" ]; then
     pane=$(herdr tab create --cwd "$PWD" --focus --label "$label" | jq -r '.result.root_pane.pane_id')
   else
@@ -268,13 +281,11 @@ clt() {
     echo "clt: could not get new pane id" >&2
     return 1
   fi
-  # Run `cl` in the new pane, forwarding the label to Claude as its session name
-  # (claude -n/--name sets the terminal title Herdr's sidebar shows, so no manual
-  # /rename). `cl` is a function defined above; the new pane's interactive shell
-  # has it. Quote args for the re-parse (herdr pane run = command text + Enter).
+
+  # Build the command line for the new pane's shell (herdr pane run = text + Enter).
   cmd="cl"
   [ -n "$label" ] && cmd="$cmd --name $(printf '%q' "$label")"
-  for a in "$@"; do cmd="$cmd $(printf '%q' "$a")"; done
+  cmd="$cmd$rest"
   herdr pane run "$pane" "$cmd"
 }
 

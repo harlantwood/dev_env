@@ -251,6 +251,33 @@ alias clc='cl --chrome'
 alias cl2c='cl2 --chrome'
 alias cl3c='cl3 --chrome'
 
+# Herdr: open a fresh tab (rooted at $PWD, focused) and launch Claude there via
+# `cl` above. Requires jq. Extra args pass through to `cl`.
+#   clt                -> new tab running `cl`
+#   clt -n 'core 2'    -> tab labeled 'core 2' AND claude --name 'core 2'
+#   clt --resume       -> `-n` labels the tab + names Claude; the rest go to `cl`
+clt() {
+  label=""
+  if [ "$1" = "-n" ]; then label="$2"; shift 2; fi
+  if [ -n "$label" ]; then
+    pane=$(herdr tab create --cwd "$PWD" --focus --label "$label" | jq -r '.result.root_pane.pane_id')
+  else
+    pane=$(herdr tab create --cwd "$PWD" --focus | jq -r '.result.root_pane.pane_id')
+  fi
+  if [ -z "$pane" ] || [ "$pane" = "null" ]; then
+    echo "clt: could not get new pane id" >&2
+    return 1
+  fi
+  # Run `cl` in the new pane, forwarding the label to Claude as its session name
+  # (claude -n/--name sets the terminal title Herdr's sidebar shows, so no manual
+  # /rename). `cl` is a function defined above; the new pane's interactive shell
+  # has it. Quote args for the re-parse (herdr pane run = command text + Enter).
+  cmd="cl"
+  [ -n "$label" ] && cmd="$cmd --name $(printf '%q' "$label")"
+  for a in "$@"; do cmd="$cmd $(printf '%q' "$a")"; done
+  herdr pane run "$pane" "$cmd"
+}
+
 alias ccs='claude --dangerously-skip-permissions --model haiku --print "commit the staged changes ONLY with a good commit message, check CLAUDE.md for instructions"'
 alias cca='claude --dangerously-skip-permissions --model haiku --print "commit ALL changes with a good commit message, check CLAUDE.md for instructions"'
 alias cpr='claude --dangerously-skip-permissions --model haiku --print "Update the PR description corresponding to the current branch.  IGNORE INDIVIDUAL COMMITS AND DIFF the branch AGAINST origin/main.  Make it concise but informative.  Use markdown formatting.  Use the `gh` CLI to update the PR description."'

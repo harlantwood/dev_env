@@ -259,7 +259,9 @@ alias cl3c='cl3 --chrome'
 #   clt                     -> new tab running `cl`
 #   clt -n 'core 2'         -> tab labeled 'core 2' AND claude --name 'core 2'
 #   clt --resume -n 'core'  -> same; -n works in any position, rest goes to `cl`
-clt() {
+# clt3 is identical but launches `cl3` (CLAUDE_CONFIG_DIR=~/.claude3).
+_clt() {
+  base="$1"; shift
   label=""
   rest=""
   expect_name=0
@@ -283,11 +285,15 @@ clt() {
   fi
 
   # Build the command line for the new pane's shell (herdr pane run = text + Enter).
-  cmd="cl"
+  cmd="$base"
   [ -n "$label" ] && cmd="$cmd --name $(printf '%q' "$label")"
   cmd="$cmd$rest"
   herdr pane run "$pane" "$cmd"
 }
+
+clt()  { _clt cl "$@"; }
+clt2() { _clt cl2 "$@"; }
+clt3() { _clt cl3 "$@"; }
 
 alias ccs='claude --dangerously-skip-permissions --model haiku --print "commit the staged changes ONLY with a good commit message, check CLAUDE.md for instructions"'
 alias cca='claude --dangerously-skip-permissions --model haiku --print "commit ALL changes with a good commit message, check CLAUDE.md for instructions"'
